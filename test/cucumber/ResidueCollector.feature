@@ -3,9 +3,9 @@ Feature: Register a residue Collector
 	I want to register a residue collector
 	So that I can use and manage the information of these collectors
 
-@ignore
+#@ignore
 
-//Controller
+#Controller
 
 	Scenario: Register new Collector
 		Given that there is no collector with email "prefeitura_do_recife@recife.com.br"
@@ -22,7 +22,7 @@ Feature: Register a residue Collector
 		Then the new collecor with email "prefeitura_do_recife@recife.com.br" 
 		And CNPJ "123000123/0001-1" is not created
 
-//GUI
+#GUI
 
 	Scenario: Register new Collector
 		Given that I am at the form page of register new collector

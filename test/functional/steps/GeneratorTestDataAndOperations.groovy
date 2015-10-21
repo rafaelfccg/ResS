@@ -32,7 +32,16 @@ class GeneratorTestDataAndOperations{
              password: "Abcd1239@",
              addressGenerator: "Donut Street number 5",
              averageMonthlyMeals: 0,
+             averageDailyMeals: 0],
+
+            [nameGenerator:"Los Polos",
+             type: "Restaurante",
+             cnpj: "testecnpj1",
+             password: "345" ,
+             addressGenerator: "Bubble Street number 7",
+             averageMonthlyMeals: 0,
              averageDailyMeals: 0]
+
     ]
 
     static public def getGenerator(){

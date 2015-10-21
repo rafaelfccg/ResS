@@ -19,7 +19,7 @@ When: I register the residue generator account "Los Pollos" with password "Abcd1
 Then: The account "Los_Pollos" with password "Abcd1234@" is created
 
 */
-
+//#if ($RegisterAResidueGenerator)
 Given(~'^That there is no generator with address "([^"]*)"$') { String address ->
     generator = ResidueGenerator.findByAddressGenerator(address)
     assert generator == null
@@ -121,7 +121,7 @@ And(~'^username "([^"]*)" has already been created'){String username ->
 Then(~'^I see a error message'){ ->
     assert page.hasErrors()
 }
-
+//#end
 
 Given(~'^The system has no generator with the address "([^"]*)"$') { String address ->
     generator = ResidueGenerator.findByAddressGenerator(address)

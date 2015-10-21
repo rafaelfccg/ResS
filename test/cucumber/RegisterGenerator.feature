@@ -3,21 +3,25 @@ Feature: register a residue generator
   I want to register residue generators
   So that I can use and manage information of these generators
 
-@ignore
+#@ignore
+#Controller
+
   Scenario: new valid generator
-    Given That there is no generator with address "Rua Japecanga, 182"
-    And  there is no registered username "Los_Pollos" in the database
-    And the password "Abcd1234@" follow the security rules
+    Given That there is no restaurant with address "Rua Japecanga, 182"
+    And  there is no registered username  "Los Pollos" in the database
+    And the password  "Abcd1234@" follow the security rules
     When I register the residue generator account "Los Pollos" with password "Abcd1234@“ and address "Rua Japecanga, 182"
-    Then The account "Los_Pollos" with password "Abcd1234@" is created
+    Then The account "Los Pollos" with password "Abcd1234@" is created
 
 
   Scenario: duplicated residue generator username
     Given That there is no generator with address "Rua Japecanga, 182"
-    And  there is a registered username "Los_Pollos" in the database
-    And the password "Abcd1234@" follow the security rules
-    When I register the residue generator account "Los_Pollos" with password "Abcd1234@“ and address "Rua Japecanga, 182"
-    Then The account new "Los_Pollos" with password "Abcd1234@" is not created
+    And  there is a registered username  "Los Pollos" in the database
+    And the password  "Abcd1234@" follow the security rules
+    When I register the residue generator account "Los Pollos" with password "Abcd1234@“ and address "Rua Japecanga, 182"
+    Then The account "Los Pollos" with password "Abcd1234@" is not created
+
+#GUI
 
   Scenario: new valid generator web
     Given I am at the register new generator page
@@ -26,11 +30,13 @@ Feature: register a residue generator
     And I register the new generator
     Then I see the show generator page
 
+
   Scenario: duplicated residue generator username web
-    Given I am at the register new generator page
-    When I fill the residue generators information with username "Los_Pollos"
-    And username "Los_Pollos" has already been created
-    And I register the new generator
+    Given I am at the home page
+    When I select the "Register new Generator" option
+    And I fill the residue generator information with username "Los Pollos"
+    And username "Los Pollos" has already been created
+    And select "register"
     Then I see a error message
 
   Scenario: duplicated residue generator address

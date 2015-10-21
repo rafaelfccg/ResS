@@ -15,6 +15,7 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:passwordField  name="password" maxlength="40" required="" value="${residueGeneratorInstance?.password}"/>
+
 </div>
 <!--#end -->
 

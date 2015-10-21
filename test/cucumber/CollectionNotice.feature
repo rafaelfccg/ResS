@@ -3,9 +3,9 @@ Feature: Collection notice
 	I want the system to send a notification via email to the city hall about the need for collection
 	So I can keep the profile of the city hall and the researcher informed  about such a need
 
-Controller
+#Controller
 
-Scenario: Resend email Notification
+  Scenario: Resend email Notification
 	Given that the system receives a request for an email to be resent
 	When the system confirms that there are pending requests
 	And there is internet connection
@@ -19,7 +19,8 @@ Scenario: Failure resending Notification
 	Then the system does not resend the email with the data of the pending requests
 	And generates an error notification
 
-GUI
+#GUI
+
 Scenario: Resending email Notification
 	Given that I am logged into the restaurant account in which I work
 	And I'm on the page of requested collections
