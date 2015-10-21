@@ -30,7 +30,7 @@ And(~'^There is internet connection$') { ->
 
 Then(~'^the system sends an email confirmation for the registered stakeholders$') {
 
-page.sendEmailConfirmation()
+page.sendEmailConfirmation(restaurante)
 
 }
 
