@@ -30,7 +30,7 @@ And(~'^There is internet connection$') { ->
 
 Then(~'^the system sends an email confirmation for the registered stakeholders$') {
 
-//send email isn't implemented
+page.sendEmailConfirmation()
 
 }
 
