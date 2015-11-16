@@ -3,6 +3,7 @@ package steps
 import pages.GeneratorCreatePage
 import pages.ResidueGeneratorShowPage
 import residueGenerator.ResidueGenerator
+
 import static cucumber.api.groovy.EN.*
 
 /**
@@ -20,11 +21,17 @@ Then: The account "Los_Pollos" with password "Abcd1234@" is created
 
 */
 //#if ($RegisterAResidueGenerator)
-Given(~'^That there is no generator with address "([^"]*)"$') { String address ->
+Given(~'^That there is no restaurant with address "([^"]*)"$') { String address ->
+
+    generator = ResidueGenerator.findByAddressGenerator(address)
+    if (generator != null){
+        generator.delete(flush:true)
+     //   generator.du
+    }
     generator = ResidueGenerator.findByAddressGenerator(address)
     assert generator == null
 }
-And(~'there is no registered username "([^"]*)" in the database"$'){String username->
+And(~'there is no registered username "([^"]*)" in the database$'){String username->
     generator = GeneratorTestDataAndOperations.findGeneratorByUsername(username)
     assert generator == null
 
@@ -60,7 +67,7 @@ And(~'there is a registered username "([^"]*)" in the database$'){String usernam
 
 }
 
-Then (~'^The account new "([^"]*)" with password "([^"]*)" is not created$'){ String username, String password->
+Then (~'^The account "([^"]*)" with password "([^"]*)" is not created$'){ String username, String password->
     generators = GeneratorTestDataAndOperations.findAllGeneratorByUsername(username)
     assert generators.size() == 1
 }
@@ -80,16 +87,17 @@ Given(~'^I am at the register new generator page$'){ ->
 
 }
 
-When(~'^I fill the residue generators information with username "([^"]*)"$') { String username ->
+When(~'^I fill the residue generator information with username "([^"]*)"$') { String username ->
     // Express the Regexp above with the code you wish you had
-    GeneratorTestDataAndOperations GTDO = new GeneratorTestDataAndOperations();
-    LinkedHashMap generator = GTDO.getGeneratorByUsername(username);
-    page.fillGeneratorDetails(generator)
+    //GeneratorTestDataAndOperations GTDO = new GeneratorTestDataAndOperations();
+    //LinkedHashMap generator = GTDO.getGeneratorByUsername(username)
+    generatori = GeneratorTestDataAndOperations.getGeneratorByUsername(username)
+    page.fillGeneratorDetails(generatori)
 }
 
 And(~'^username "([^"]*)" has not been created yet'){String username ->
 
-    generator = GeneratorTestDataAndOperations.findGeneratorByUsername(username)
+    generator = ResidueGenerator.findByUsername(username)
     if(generator != null){
         generator.delete(flush:true)
     }
@@ -101,8 +109,9 @@ And(~'^I register the new generator'){ ->
     page.selectCreateGenerator()
 }
 
-Then(~'^I see the show generator page'){ ->
-    at ResidueGeneratorShowPage
+Then(~'^A generator is stored at the system'){ ->
+    //assert !page.hasErrors()
+ //   at ResidueGeneratorShowPage
     //assert withConfirm(true) { $("input", name: "showConfirm").click() } == "Generator was created!"
 }
 
@@ -114,8 +123,9 @@ Then(~'^I see the show generator page'){ ->
 //Then I see a error message
 
 And(~'^username "([^"]*)" has already been created'){String username ->
-    generator = GeneratorTestDataAndOperations.findGeneratorByUsername(username)
-    assert  generator != null
+    GeneratorTestDataAndOperations.createGeneratorUsername(username)
+    //generator = ResidueGenerator.findByUsername(username)
+    //assert  generator != null
 }
 
 Then(~'^I see a error message'){ ->

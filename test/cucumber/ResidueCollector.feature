@@ -6,7 +6,7 @@ Feature: Register a residue Collector
 #@ignore
 
 #Controller
-
+@ignore
 	Scenario: Register new Collector
 		Given that there is no collector with email "prefeitura_do_recife@recife.com.br"
 		And there is no registered CNPJ "123000123/0001-1" in the database
@@ -14,7 +14,7 @@ Feature: Register a residue Collector
 		And with CNPJ "123000123/0001-1"
 		Then the collector with email "prefeitura_do_recife@recife.com.br" 
 		And CNPJ "123000123/0001-1" is created in the system
-
+  @ignore
 	Scenario: Register a duplicated collector
 		Given that there is a registered collector with email "prefeitura_do_recife@recife.com.br" 
 		And CNPJ "123000123/0001-1" in the system
@@ -23,7 +23,7 @@ Feature: Register a residue Collector
 		And CNPJ "123000123/0001-1" is not created
 
 #GUI
-
+  @ignore
 	Scenario: Register new Collector
 		Given that I am at the form page of register new collector
 		And I fill the fields with new Collector information
@@ -32,7 +32,7 @@ Feature: Register a residue Collector
 		When I press the button "Register new Collector"
 		Then the system show me a success message "The collecter has been registered with success!"
 
-
+  @ignore
 	Scenario: Register duplicated Collector
 		Given that I am at the form page of register new collector
 		And I fill the field with new Collector information

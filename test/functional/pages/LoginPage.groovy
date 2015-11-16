@@ -4,34 +4,27 @@ import geb.Page
 
 class LoginPage extends Page{
 
-    def titulo = "Logar"
-    static url = "ResS/login"
+    def titulo = "ResS - login"
+    static url = "ResS/home/login"
 
     static at = {
         title ==~ titulo
     }
 
-    def fillCredentials(LinkedHashMap gerador){
-        $("form").cnpj = gerador.cnpj
-        $("form").password = gerador.password
+
+    def fillCred(String cnpj){
+        $("form").cnpj = cnpj
+
     }
 
-    def fillCred(String cred){
-        if(select(cred)){
-            $("form").cnpj = cnpj
-        }
-    }
 
     def fillPass(String pass){
-        if(select(pass)){
-            $("form").pass = pass
-        }
+        $("form").password = pass
+
     }
 
-    def select(String s){
-        if($('div', id: 'status').find('input', text: s)){
-           return true
-        }
+    def submit(){
+        $("input", name: "_action_logar").click()
     }
 
 }

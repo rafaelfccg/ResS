@@ -16,11 +16,11 @@ Given (~'^that the system receives a request by "([^"]*)" for an email to be res
 }
 
 
-When (~'^the system confirms that there are pending requests$') {
+When (~'^the system confirms that there are pending requests$') { ->
     SolicitacaoColetaTestDataAndOperations.createHarvestSolicitationByGenerator(residueGenerator)
     harvestSolicitation = HarvestSolicitation.findByResidueGenerator(residueGenerator)
 
-    assert residueGenerator.harvestSolicitation != null && harvestSolicitation != null && harvestSolicitation.status == "Pending"
+    assert harvestSolicitation.residueGenerator != null && harvestSolicitation != null && harvestSolicitation.status == "Pending"
 }
 
 
@@ -28,7 +28,7 @@ Then (~'^the system resends the email with the data of the pending requests to t
 //resend email is not implemented yet
 }
 
-And(~'^generates a notification of email sending confirmation$') {
+And(~'^generates a notification of email sending confirmation$') {->
 //not implemented yet
 }
 
@@ -45,7 +45,7 @@ And (~'there has been a open collection request for some time$') { ->
     at SolicitacaoColetaViewPage
 }
 
-When(~'I select the "resend email" button$') {
+When(~'I select the resend email notification option$') { ->
    page.resendEmail()
 }
 

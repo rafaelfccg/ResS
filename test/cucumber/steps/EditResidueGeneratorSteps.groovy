@@ -10,6 +10,7 @@ import static cucumber.api.groovy.EN.*
 Given(~'^the system has a residue generator with the address "([^"]*)"$') { String address ->
     GeneratorTestDataAndOperations.createGenerator(address)
     generator = ResidueGenerator.findByAddressGenerator(address)
+    endereco = address
     assert generator != null
 }
 
@@ -21,7 +22,6 @@ When (~'^I change it to "([^"]*)"$') {  String newAddress ->
 Then(~'^the system should store the residue generator with the new address in the data base$') { ->
     assert ResidueGenerator.findByAddressGenerator(endereco) != null
 }
-
 
 Given(~'^the system has a residue genarator with CNPJ ([^"]*)$'){String cnpj->
     GeneratorTestDataAndOperations.createGeneratorCnpj(cnpj)
@@ -112,7 +112,7 @@ Then(~'^I should see a message indicating that the changes are properly stored')
 
     assert hasMessage != null
 }
-*/
+
 //---------------------------------------------LEAVING BLANK FIELDS------------------------------------------------------------
 
 

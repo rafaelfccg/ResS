@@ -33,5 +33,5 @@ Given I am on creating collection page
 When I fill the request information with Name "RU"
 And I fill name and data fields
 And Select "Create"
-Then I see a error message
+Then I see an error message
 

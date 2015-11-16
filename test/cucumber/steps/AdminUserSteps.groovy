@@ -21,7 +21,7 @@ And(~'^has no user with the login "([^"]*)"$'){String login->
     userLogin = AdminUser.findByAdminLogin(login)
     assert userLogin == null
 }
-When(~'^I register a user called "([^"]*)", with CPF "([^"]*)", login "([^"]*)", password "([^"]*)", email ""([^"]*)" and phone "([^"]*)"$'){
+When(~'^I register a user called "([^"]*)", with CPF "([^"]*)", login "([^"]*)", password "([^"]*)", email "([^"]*)" and phone "([^"]*)"$'){
     String name, String cpf, String login, String password, String email, String phone ->
         AdminUserTestDataAndOperations.createUser(name, cpf, login, password, email, phone)
 }
@@ -48,5 +48,5 @@ When(~'^I ask the system to add a user called "([^"]*)", with CPF "([^"]*)", log
         page.submitUserInfo()
 }
 Then(~'^I see a message confirming the user registration$'){->
-    assert page.hasMessage()
+    assert !page.hasErrors()
 }

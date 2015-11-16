@@ -1,8 +1,8 @@
 package pages
 import geb.Page
 
-class AdminUserSignUpPage {
-    def titulo = "Admin User Sign Up"
+class AdminUserSignUpPage extends Page {
+    def titulo = "Sign Up"
     static url = "/ResS/adminUser/create"
 
     static at = {
@@ -22,12 +22,11 @@ class AdminUserSignUpPage {
         $("input", name: "submit").click()
     }
 
-    def hasMessage(){
-        def message = $('.message')
-        if(message){
-            return true
-        } else {
+    def boolean hasErrors(){
+        if($(".errors") == null){
             return false
+        }else{
+            return true
         }
     }
 }

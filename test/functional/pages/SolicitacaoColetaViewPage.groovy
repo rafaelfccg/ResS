@@ -4,7 +4,7 @@ package pages
 import geb.Page
 
 class SolicitacaoColetaViewPage extends Page {
-    def titulo = "Solicitacao de coleta"
+    def titulo = "Criar solicitacao de coleta"
 
     static url = "ResS/generatorHarvestSolicitation/index/1"
 
