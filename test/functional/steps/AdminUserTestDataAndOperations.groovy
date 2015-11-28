@@ -15,7 +15,7 @@ public class AdminUserTestDataAndOperations {
         ]
     }
 
-    def createUser(String name, String cpf, String login, String password, String email, String phone){
+    static public def createUser(String name, String cpf, String login, String password, String email, String phone){
         def controller = new AdminUserController()
         def newAdminUser = [adminName: name,
                             adminCpf: cpf,

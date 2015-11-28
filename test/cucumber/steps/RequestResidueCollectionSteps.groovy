@@ -5,18 +5,23 @@ import pages.ColetaListPage
 import HistoricoDeColeta.Coleta
 import static cucumber.api.groovy.EN.*
 
+
 //Updated by Ricardo Barioni on 19/10/2015
+
 
 //CENARIO CONTROLADOR:
 //Scenario: Blank Name input
 
 Given (~'^I am logged in the system as a restaurant$'){ ->
+
     //login not implemented yet
 }
 
 When (~'^I register a residue collection request with Name "([^"]*)"$'){String name ->
+
     CreateColetaTestDataAndOperations.createColetaWithName(name)
 }
+
 
 Then (~'^The residue request with name "([^"]*)" is not generated$'){String name ->
     assert Coleta.findByNome(name) == null
@@ -30,6 +35,7 @@ Given (~'^I am logged on the system as a restaurant$'){ ->
 }
 
 When (~'^I register a residue collection request with Volume "([^"]*)"$'){String volume ->
+
     CreateColetaTestDataAndOperations.createColetaWithVolume(volume)
 }
 
@@ -58,6 +64,7 @@ And (~'^Choose "Create"$'){ ->
 }
 
 Then (~'^I should see a error message$'){ ->
+
     to ColetaListPage
     at ColetaListPage
     assert page.hasErrors()
@@ -67,6 +74,7 @@ Then (~'^I should see a error message$'){ ->
 //Scenario: Invalid volume input
 
 Given (~'^I am on creating collection page$'){ ->
+
     to ColetaCreatePage
     at ColetaCreatePage
 }
@@ -80,11 +88,14 @@ And (~'^I fill name and data fields$'){ ->
 }
 
 And (~'^Select "Create"$'){ ->
+
     page.submit()
 }
 
-Then (~'^I see a error message$'){ ->
+Then (~'^I see an error message$'){ ->
+
     to ColetaListPage
     at ColetaListPage
     assert page.hasErrors()
 }
+

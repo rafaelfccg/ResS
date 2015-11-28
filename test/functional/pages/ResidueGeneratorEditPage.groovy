@@ -26,6 +26,22 @@ class ResidueGeneratorEditPage extends Page{
         $("form").averageDailyMeals = gerador.averageDailyMeals
     }
 
+    def fillCnpjField(String cnpj){
+        $("form").cnpj = cnpj
+    }
+
+
+    def fillOtherFieldsCnpj() {
+        GeneratorTestDataAndOperations GTDO = new GeneratorTestDataAndOperations();
+        LinkedHashMap gerador = GTDO.getGenerator();
+        $("form").addressGenerator = gerador.addressGenerator
+        $("form").nameGenerator = gerador.nameGenerator
+        $("form").type = gerador.type
+        $("form").averageMonthlyMeals = gerador.averageMonthlyMeals
+        $("form").averageDailyMeals = gerador.averageDailyMeals
+    }
+
+
     def submitChanges(){
         $("input", name: "edit").click()
     }
@@ -40,7 +56,4 @@ class ResidueGeneratorEditPage extends Page{
             return false
         }
     }
-
-
-
 }

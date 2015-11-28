@@ -1,7 +1,7 @@
 /**
  * Created by ess on 20/10/15.
  */
- 
+ /*
 package steps
 
 import pages.HarvestSolicitationViewPage
@@ -10,6 +10,8 @@ import reportGenerator.ReportGenerator
 import steps.GeneratorTestDataAndOperations
 
 //CONTROLLER
+
+
 
 //Scenario: Report generation
 Given(~'^that collections were made on "([^"]*)" residue generator on the last month$') { String name ->
@@ -25,13 +27,16 @@ Then(~'^a report is generated containing those collection’s information$') { -
     assert reportGenerator != null
 }
 
+*/
 //GUI
+/*
 
 //Scenario: Generate new report
 Given(~'^I am at the HarvestSolicitationViewPage page$'){ ->
     to HarvestSolicitationViewPage
     at HarvestSolicitationViewPage
 }
+
 When(~'I select the "Generate Report" option$') { ->
     page.generateReport()
 }
@@ -40,6 +45,11 @@ And(~'collections were made on the previous month at "RU" residue generator$') {
     residueGenerator = ResidueGenerator.findByNameGenerator(name)
     assert residueGenerator != null && GeneratorTestDataAndOperations.hasMonthlyHarvest(residueGenerator)
 }
+
 Then(~'I see the generated report$') { ->
+
+	printRelatorio()
+
     page.printReport()
 }
+*/

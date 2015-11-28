@@ -16,7 +16,7 @@ Feature: List of Residue Generator
     And the system has a Residue Generator at "Av. Brodewai" with average daily meal of "5"
     When I sort the list content by average daily meals
     Then the order of the system list have been modified to have address "Av. Capacanama" before "Av. Brodewai"
-
+@ignore
   Scenario: reaching residue generator list page from the show page
     Given I am at the Residue Generator Show page
     When I go to the List Residue Generators page

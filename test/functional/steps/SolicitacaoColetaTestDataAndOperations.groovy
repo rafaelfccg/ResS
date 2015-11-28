@@ -12,6 +12,21 @@ class SolicitacaoColetaTestDataAndOperations {
                     nameGenerator: "Nuka Cola",
                     type: "Restaurante",
                     cnpj: "0000000",
+                    username: "username",
+                    password: "password",
+                    addressGenerator: "Elm Street number 13",
+                    averageDailyMeals: 30,
+                    averageMonthlyMeals: 1000,
+                    hasActiveHarvest: true,
+                    harvestSolicitation: null
+            ],
+
+            [
+                    nameGenerator: "Lol",
+                    type: "Restaurante",
+                    cnpj: "0000000",
+                    username: "username",
+                    password: "password",
                     addressGenerator: "Elm Street number 13",
                     averageDailyMeals: 30,
                     averageMonthlyMeals: 1000,
@@ -23,6 +38,8 @@ class SolicitacaoColetaTestDataAndOperations {
                     nameGenerator: "RU",
                     type: "Restaurante",
                     cnpj: "0000000",
+                    username: "username",
+                    password: "password",
                     addressGenerator: "Any Street number 5",
                     averageDailyMeals: 50,
                     averageMonthlyMeals: 2000,
@@ -40,6 +57,7 @@ class SolicitacaoColetaTestDataAndOperations {
                     status: "Pending",
                     estimatedAmountOfResidue: 30,
                     solicitationDate: new Date(),
+                    confirmationDate: null,
                     residueGenerator: findGeneratorByAddress("Elm Street number 13")
             ],
 
@@ -49,6 +67,7 @@ class SolicitacaoColetaTestDataAndOperations {
                     status: "Pending",
                     estimatedAmountOfResidue: 60,
                     solicitationDate: new Date(),
+                    confirmationDate: null,
                     residueGenerator: findGeneratorByName("RU")
             ]
     ]

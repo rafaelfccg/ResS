@@ -4,7 +4,7 @@ Feature: Edit the residue generator registration data
   so that i can keep my registration data up to date
 
   #if ($ All the fields are filled correctly)
-
+@ignore
   Scenario: All the fields are filled correctly
     Given the system has a residue generator with the address "Bubble Street number 4"
     When I change it to "Fool street number 0"
@@ -12,7 +12,7 @@ Feature: Edit the residue generator registration data
   #end
 
   #if($Residue generator registration data edit success web page)
-
+@ignore
   Scenario: Residue generator registration data edit success web page
     Given I am at the residue generator edit page
     When  I fill the address field with "Fool's street number 0"

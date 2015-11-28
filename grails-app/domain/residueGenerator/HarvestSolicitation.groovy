@@ -7,6 +7,7 @@ class HarvestSolicitation {
     String status;
     int estimatedAmountOfResidue;
     Date solicitationDate;
+    Date confirmationDate;
     ResidueGenerator residueGenerator;
 
     static belongsTo = [residueGenerator : ResidueGenerator]
@@ -16,6 +17,7 @@ class HarvestSolicitation {
         generatorId nullable:false,blank:false,unique:true
         status nullable:false,blank:false
         solicitationDate nullable:false,blank:false
+        confirmationDate nullable:true,blank:false
         estimatedAmountOfResidue nullable:false,blank:false
     }
 }

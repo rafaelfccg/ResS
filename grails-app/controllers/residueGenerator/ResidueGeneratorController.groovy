@@ -21,21 +21,30 @@ class ResidueGeneratorController {
     }
 
     def create() {
+
         [residueGeneratorInstance: new ResidueGenerator(params)]
     }
+    //#if ($RegisterAResidueGenerator)
     def verifySecurityOfPassword(String password){
 
-        true
+        if(password ==null) return false
+
+        return password.length() >=8
+
     }
+    //#end
     def save() {
+
         def residueGeneratorInstance = new ResidueGenerator(params)
+
         if (!residueGeneratorInstance.save(flush: true)) {
             render(view: "create", model: [residueGeneratorInstance: residueGeneratorInstance])
             return
         }
-
+        residueGeneratorInstance.errors
         flash.message = message(code: 'default.created.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), residueGeneratorInstance.id])
         redirect(action: "show", id: residueGeneratorInstance.id)
+
     }
 
     def show(Long id) {
@@ -71,8 +80,8 @@ class ResidueGeneratorController {
         if (version != null) {
             if (residueGeneratorInstance.version > version) {
                 residueGeneratorInstance.errors.rejectValue("version", "default.optimistic.locking.failure",
-                          [message(code: 'residueGenerator.label', default: 'ResidueGenerator')] as Object[],
-                          "Another user has updated this ResidueGenerator while you were editing")
+                        [message(code: 'residueGenerator.label', default: 'ResidueGenerator')] as Object[],
+                        "Another user has updated this ResidueGenerator while you were editing")
                 render(view: "edit", model: [residueGeneratorInstance: residueGeneratorInstance])
                 return
             }
