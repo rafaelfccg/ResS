@@ -71,8 +71,37 @@ Then(~'^I am at the Report Waste Production page'){->
 //Then I am at the Report Waste Production page
 //And the report is empty
 
-
 And(~'^the report is empty'){->
     //??
     assert page.hasEmptyMessage()
+}
+
+When (~'^the system receives a request to generate the residue generator production report for the month of "([^"]*)" for the last "([^"]*)" years$') { String month, int yearsAgo ->
+
+    //to do
+
+}
+
+Then (~'^a report with data for that month and years is generated$') { ->
+
+    //to do
+
+}
+
+When(~'I select the generate report button$') { ->
+
+    //to do
+
+}
+
+And(~'I fill the required fields correctly$') { ->
+
+    //to do
+
+}
+
+Then (~'^I am at the Historical Month Report Waste Production page$') { ->
+
+    //to do
+
 }
