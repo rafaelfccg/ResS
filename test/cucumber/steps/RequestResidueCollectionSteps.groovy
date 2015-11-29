@@ -5,7 +5,7 @@ import pages.ColetaListPage
 import HistoricoDeColeta.Coleta
 import static cucumber.api.groovy.EN.*
 
-
+/*
 //Updated by Ricardo Barioni on 19/10/2015
 
 //CONTROLLER
@@ -178,3 +178,4 @@ Then (~'^I shall see a error message$'){ ->
     at ColetaListPage
     assert page.hasErrors()
 }
+*/

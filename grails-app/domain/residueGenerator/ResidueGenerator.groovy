@@ -23,6 +23,7 @@ class ResidueGenerator {
         username  nullable:true, blank: false, unique: true, minSize: 4, maxSize:30
         password  nullable:true, blank: false, minSize:8, maxSize:30
 
+
         //#end
         nameGenerator nullable:true,blank:true // no caso de ser ecoponto pode n�o ter nome
         type inList: ["Restaurante","Cantina","Ecoponto"], nullable:false, blank:false

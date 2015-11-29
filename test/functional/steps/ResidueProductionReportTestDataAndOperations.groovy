@@ -53,9 +53,12 @@ class ResidueProductionReportTestDataAndOperations {
     }
 
     static public void createGenerator(String address){
-       // def res = new ResidueGeneratorController()
-        //def novoGenerator = ResidueProductionReportTestDataAndOperations.getGeneratorByAddress(address)
-
+        def cont = new ResidueGeneratorController()
+        def novoGenerator = getGeneratorByAddress(address)
+        cont.params << novoGenerator
+        cont.create()
+        cont.save()
+        cont.response.reset()
 
     }
 

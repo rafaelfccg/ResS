@@ -1,5 +1,6 @@
 package steps
 
+import home.HomeController
 import residueGenerator.ResidueGenerator
 import residueGenerator.ResidueGeneratorController
 
@@ -38,12 +39,14 @@ class LoginTestDataAndOperations {
         }
     }
 
+
     static public def logar(String pass){
 
             def user = findGeneratorByPassword(pass)
 
+
             if (user)
-               true
+                true
 
             else
                 false
