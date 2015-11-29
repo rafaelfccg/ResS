@@ -20,5 +20,13 @@ class ColetaListPage extends Page{
 			return true
 		}
 	}
+
+	def boolean hasOk(){
+		if($(".ok") == null){
+			return false
+		}else{
+			return true
+		}
+	}
 	
 }
