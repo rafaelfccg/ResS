@@ -29,24 +29,28 @@ Feature: Residue Generator Production Report
     Then I am at the Report Waste Production page
     And the report is empty
 
+    @ignore
   Scenario: generate historical month based residue production report
     Given the system has a residue generator at "endereco" registered
-    When the system receives a request to generate the residue generator production report for the month of "November" for the last "3" years
+    When the system receives a request to generate the residue generator production report for the month "11" for the last "3" years
     Then a report with data for that month and years is generated
 
+    @ignore
   Scenario: generate empty historical month based residue production report
     Given the system has no registered residue Generator
-    When the system receives a request to generate the residue generator production report for the month of "November" for the last "3" years
+    When the system receives a request to generate the residue generator production report for the month "11" for the last "3" years
     Then the report is empty
 
+    @ignore
   Scenario: generate historical month based residue production report web
-     Given I am at the Residue Generator Report page
+     Given I am at the Create Residue Generator Report page
      When I select the generate report button
      And I fill the required fields correctly
      Then I am at the Historical Month Report Waste Production page
 
+    @ignore
   Scenario: generate empty historical month based residue production report web
-     Given I am at the Residue Generator Report page
+     Given I am at the Create Residue Generator Report page
      And the system has no registered residue Generator
      When I select the generate report button
      And I fill the required fields correctly
