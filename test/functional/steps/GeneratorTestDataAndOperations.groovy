@@ -41,6 +41,24 @@ class GeneratorTestDataAndOperations{
              password: "Abcd1239@",
              addressGenerator: "Av. Capacanama",
              averageMonthlyMeals: 0,
+             averageDailyMeals: 10],
+
+            [nameGenerator:"RU2",
+             type: "Restaurante",
+             cnpj: "testecnpj1",
+             username: "Los_Pollos6",
+             password: "Abcd1234@",
+             addressGenerator: "endereco",
+             averageMonthlyMeals: 0,
+             averageDailyMeals: 0],
+
+            [nameGenerator:"Clovis Palace",
+             type: "Restaurante",
+             cnpj: "testecnpj2",
+             username: "Los_Pollos7",
+             password: "Abcd1238@",
+             addressGenerator: "endereco2",
+             averageMonthlyMeals: 0,
              averageDailyMeals: 10]
 
     ]
@@ -86,6 +104,7 @@ class GeneratorTestDataAndOperations{
     }
     static public void createGenerator(String address){
         def cont = new ResidueGeneratorController()
+        println address
         def novoGenerator = getGeneratorByAddress(address)
         cont.params << novoGenerator
         cont.create()
@@ -226,7 +245,7 @@ class GeneratorTestDataAndOperations{
         def cont = new ResidueGeneratorController()
         def novoGenerator = getGeneratorByAddress("Bubble Street number 7")
         cont.params << novoGenerator
-        cont.params << [addressGenerator: address] << [averageDailyMeals: dailymeal] <<[username: address] //guarantee that the username is not repeated
+        cont.params << [addressGenerator: address] << [averageDailyMeals: dailymeal] <<[username: address]
         cont.create()
         cont.save()
         cont.response.reset()

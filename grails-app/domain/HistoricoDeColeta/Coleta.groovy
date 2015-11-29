@@ -19,6 +19,17 @@ class Coleta {
         volume  blank: false, nullable: false, min: 1 //notEqual: 0 // volume para coleta não deve ser 0 nem negativo. deve-se haver algo a ser coletado
         senha blank: false
     }
+
+    static List returnSearch(Date d1, Date d2){
+
+        List coletas = Coleta.createCriteria().list() {
+            between('data', d1, d2)
+        }
+
+        return coletas
+
+    }
+
     void setName(String novoNome){
         if(Coleta.findByNomeAndData(novoNome,this.data) == null){
             this.nome = novoNome

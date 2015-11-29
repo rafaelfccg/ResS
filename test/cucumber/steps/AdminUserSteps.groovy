@@ -21,11 +21,13 @@ Given(~'^the system has no user with the CPF "([^"]*)"$'){String cpf->
     userCpf = AdminUser.findByAdminCpf(cpf)
     assert userCpf == null
 }
+
 Given(~'^the system already has a user with the login "([^"]*)"$'){String login->
     AdminUserTestDataAndOperations.createUser(login)
     userLogin = AdminUser.findByAdminLogin(login)
     assert userLogin != null
 }
+
 And(~'^has no user with the login "([^"]*)"$'){String login->
     userLogin = AdminUser.findByAdminLogin(login)
     assert userLogin == null
@@ -63,6 +65,7 @@ Given(~'^I’m at the sign up page$'){->
     to AdminUserSignUpPage
     at AdminUserSignUpPage
 }
+
 And(~'^there’s already a user with the login "([^"]*)"$'){ String login->
     AdminUserTestDataAndOperations.createUser(login)
     user = AdminUser.findByAdminLogin(login)
@@ -84,6 +87,7 @@ And(~'^there is no user with the CPF "([^"]*)"$'){ String cpf->
     user = AdminUser.findByAdminCpf(cpf)
     assert  user == null
 }
+
 When(~'^I ask the system to add a user called "([^"]*)", with CPF "([^"]*)", login "([^"]*)", password "([^"]*)", email "([^"]*)" and phone "([^"]*)"$'){
     String name, String cpf, String login, String password, String email, String phone ->
         page.fillUserInfo(name, cpf, login, password, email, phone)

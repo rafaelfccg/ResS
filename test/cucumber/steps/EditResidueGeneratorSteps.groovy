@@ -87,6 +87,8 @@ Then(~'^I can see a confirmation message'){
 
 
 
+
+
 Given(~'^I am at the residue generator edit page'){ ->
     to ResidueGeneratorEditPage
     at ResidueGeneratorEditPage

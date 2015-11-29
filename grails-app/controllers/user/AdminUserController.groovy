@@ -1,6 +1,8 @@
 package user
 
+
 import org.springframework.dao.DataIntegrityViolationException
+
 import user.AdminUser
 
 class AdminUserController {
@@ -38,6 +40,7 @@ class AdminUserController {
             redirect(action: "list")
             return
         }
+
 
         [adminUserInstance: adminUserInstance]
     }
@@ -88,6 +91,7 @@ class AdminUserController {
 
         flash.message = message(code: 'default.updated.message', args: [message(code: 'adminUser.label', default: 'AdminUser'), adminUserInstance.adminLogin])
         redirect(action: "show", id: adminUserInstance.adminLogin)
+
     }
 
 }
