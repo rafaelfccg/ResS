@@ -7,7 +7,7 @@ import residueGenerator.ResidueGenerator
 //CONTROLLER
 
 //Scenario: Sending confirmation
-Given(~'^that the system has a waste collection "([^"]*)" confirmed$'){ String name ->
+Given(~'^that the system has a waste collection confirmed$'){ String name ->
     CreateHarvestSolicitationTestDataAndOperations.createGeneratorByName(name)
     residueGenerator = ResidueGenerator.findByNameGenerator(name)
 
