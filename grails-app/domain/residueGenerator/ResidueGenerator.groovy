@@ -31,7 +31,9 @@ class ResidueGenerator {
         averageMonthlyMeals  nullable: false, min: 0,blank:false
         hasActiveHarvest nullable:false
         harvestSolicitation nullable:true
-        cnpj blank:false, nullable:false
+        //#if ($EditAccountsCnpj)
+        cnpj blank:false, nullable:false, minSize: 14, maxSize: 14, matches: "[0-9]+"
+        //#end
     }
 
     String toString(){

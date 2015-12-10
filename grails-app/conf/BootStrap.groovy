@@ -7,7 +7,7 @@ class BootStrap {
         def ru = new ResidueGenerator(
                 nameGenerator:"RU",
                 type: "Restaurante",
-                cnpj: "testecnpj1",
+                cnpj: "12345678910005",
                 password: "12345678",
                 addressGenerator: "Bubble road number 4",
                 averageMonthlyMeals: 0,
@@ -23,7 +23,7 @@ class BootStrap {
         def stockResidueGenerator = new ResidueGenerator(
                 nameGenerator: "Stock Food",
                 type: "Restaurante",
-                cnpj: "0000000",
+                cnpj: "12345678912300",
                 addressGenerator: "Elm Street number 13",
                 averageDailyMeals: 30,
                 averageMonthlyMeals: 1000,
@@ -34,13 +34,14 @@ class BootStrap {
         def stockResidueGenerator2 = new ResidueGenerator(
                 nameGenerator: "Nuka Cola",
                 type: "Restaurante",
-                cnpj: "0000000",
+                cnpj: "12345678912111",
                 addressGenerator: "Elm Street number 14",
                 averageDailyMeals: 20,
                 averageMonthlyMeals: 1000,
                 hasActiveHarvest: false,
                 harvestSolicitation: null
         )
+
 
 
         ru.save(failOnError: true)
@@ -51,9 +52,9 @@ class BootStrap {
         stockHarvestCompany3.save(failOnError: true);
 
         def area2 = new ResidueGenerator(
-                nameGenerator:"CCEN/Área II",
+                nameGenerator:"CCEN/ï¿½rea II",
                 type: "Cantina",
-                cnpj: "testecnpj2",
+                cnpj: "12345678912347",
                 addressGenerator: "UFPE1",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -62,9 +63,9 @@ class BootStrap {
         area2.save(failOnError: true)
 
         def bomCafe = new ResidueGenerator(
-                nameGenerator:"Bom Café – CTG",
+                nameGenerator:"Bom Cafï¿½ ï¿½ CTG",
                 type: "Restaurante",
-                cnpj: "testecnpj3",
+                cnpj: "12345678912348",
                 addressGenerator: "UFPE2",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -74,7 +75,7 @@ class BootStrap {
         def rotadoLanche = new ResidueGenerator(
                 nameGenerator:"Rota do Lanche",
                 type: "Restaurante",
-                cnpj: "testecnpj4",
+                cnpj: "12345678912853",
                 addressGenerator: "UFPE3",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -84,7 +85,7 @@ class BootStrap {
         def cantinaCssa = new ResidueGenerator(
                 nameGenerator:"Cantina CCSA",
                 type: "Cantina",
-                cnpj: "testecnpj5",
+                cnpj: "12345678910483",
                 addressGenerator: "UFPE4",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -94,7 +95,7 @@ class BootStrap {
         def quiosqueCssa = new ResidueGenerator(
                 nameGenerator:"Quiosque CCSA",
                 type: "Cantina",
-                cnpj: "testecnpj6",
+                cnpj: "12345654612345",
                 addressGenerator: "UFPE5",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -102,9 +103,9 @@ class BootStrap {
         quiosqueCssa.save(failOnError: true)
 
         def planetRefeicoesCTG = new ResidueGenerator(
-                nameGenerator:"Planet Refeições – CTG",
+                nameGenerator:"Planet Refeiï¿½ï¿½es ï¿½ CTG",
                 type: "Restaurante",
-                cnpj: "testecnpj7",
+                cnpj: "12098374651029",
                 addressGenerator: "UFPE6",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -112,9 +113,9 @@ class BootStrap {
         planetRefeicoesCTG.save(failOnError: true)
 
         def planetRefeicoesCCS = new ResidueGenerator(
-                nameGenerator:"Planet Refeições – CCS",
+                nameGenerator:"Planet Refeiï¿½ï¿½es ï¿½ CCS",
                 type: "Restaurante",
-                cnpj: "testecnpj8",
+                cnpj: "10294758493028",
                 addressGenerator: "UFPE7",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -122,9 +123,9 @@ class BootStrap {
 
         planetRefeicoesCCS.save(failOnError: true)
         def planetRefeicoesCE = new ResidueGenerator(
-                nameGenerator:"Planet Refeições – CE",
+                nameGenerator:"Planet Refeiï¿½ï¿½es ï¿½ CE",
                 type: "Restaurante",
-                cnpj: "testecnpj9",
+                cnpj: "01929292837465",
                 addressGenerator: "UFPE8",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -132,9 +133,9 @@ class BootStrap {
 
         planetRefeicoesCE.save(failOnError: true)
         def chefPlataoCCSA = new ResidueGenerator(
-                nameGenerator:"Chef Platão – CCSA",
+                nameGenerator:"Chef Platï¿½o ï¿½ CCSA",
                 type: "Restaurante",
-                cnpj: "testecnpj10",
+                cnpj: "10293839201928",
                 addressGenerator: "UFPE9",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -143,9 +144,9 @@ class BootStrap {
         chefPlataoCCSA.save(failOnError: true)
 
         def chefPlataoCFCH = new ResidueGenerator(
-                nameGenerator:"Chef Platão – CFCH",
+                nameGenerator:"Chef Platï¿½o ï¿½ CFCH",
                 type: "Restaurante",
-                cnpj: "testecnpj11",
+                cnpj: "12345678912345",
                 addressGenerator: "UFPE10",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -154,7 +155,7 @@ class BootStrap {
         def aquarela = new ResidueGenerator(
                 nameGenerator:"Aquarela - CAC",
                 type: "Restaurante",
-                cnpj: "testecnpj12",
+                cnpj: "12300008912345",
                 addressGenerator: "UFPE11",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
@@ -162,9 +163,9 @@ class BootStrap {
         aquarela.save(failOnError: true)
 
         def sinhaPimenta = new ResidueGenerator(
-                nameGenerator:"Sinhá Pimenta – CCB",
+                nameGenerator:"Sinhï¿½ Pimenta ï¿½ CCB",
                 type: "Restaurante",
-                cnpj: "testecnpj13",
+                cnpj: "12345670002345",
                 addressGenerator: "UFPE12",
                 averageMonthlyMeals: 0,
                 averageDailyMeals: 0
