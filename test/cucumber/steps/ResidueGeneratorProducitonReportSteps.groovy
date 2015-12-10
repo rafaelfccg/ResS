@@ -57,6 +57,7 @@ Given(~'^I am at the Create Residue Generator Report page'){->
 
 }
 When(~'^I click ask the system to produce a report based on the last "([^"]*)" months'){String months->
+    at CreateResidueProductionReportPage
     page.fillPeriod(months)
     page.clickNewMonthlyReport()
 }

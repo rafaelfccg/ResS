@@ -25,8 +25,8 @@ Feature: register a residue generator
 
   Scenario: new valid generator web
     Given I am at the register new generator page
-    When I fill the residue generator information with username "Los_Pollos2"
     And username "Los_Pollos2" has not been created yet
+    When I fill the residue generator information with username "Los_Pollos2"
     And I register the new generator
     Then A generator is stored at the system
 
@@ -36,7 +36,7 @@ Feature: register a residue generator
     When I fill the residue generator information with username "Los_Pollos"
     And username "Los_Pollos" has already been created
     And I register the new generator
-    Then I see a error message
+    Then I see an error
 
   Scenario: duplicated residue generator address
     Given The system has a generator with the address "Bubble Street number 7" already stored

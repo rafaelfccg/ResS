@@ -15,12 +15,13 @@ class CreateResidueProductionReportPage extends Page{
 
     def fillPeriod(String period){
 
-        $("form").period = period
+        $("input", name: "monthsBack").value(period)
+       // $("select", name: "type").
 
     }
 
     def clickNewMonthlyReport(){
-        $("monthReport").click()
+        $("input[name='Ok']").click()
     }
     //look generator edit page
     def boolean hasEmptyMessage(){

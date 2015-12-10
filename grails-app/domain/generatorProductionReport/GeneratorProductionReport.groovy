@@ -20,17 +20,22 @@ class GeneratorProductionReport {
     static hasMany = [harvestSolicitations:HarvestSolicitation]
 
     def hasGenerator(String withAddress){
-        def array = harvestSolicitations.toArray();
-        for(int i = 0; i < array.length; i++){
-            HarvestSolicitation res =  array[i]
-            if(res.residueGenerator.addressGenerator == withAddress) {
-                return true;
+        if (harvestSolicitations != null) {
+            def array = harvestSolicitations.toArray();
+            for (int i = 0; i < array.length; i++) {
+                HarvestSolicitation res = array[i]
+                if (res.residueGenerator.addressGenerator == withAddress) {
+                    return true;
+                }
             }
         }
         return false;
     }
     def isEmpty(){
-        return harvestSolicitations.toArray().length == 0
+        if (harvestSolicitations != null) {
+            return harvestSolicitations.toArray().length == 0
+        }
+        return true
     }
     def computeData(){
         def residueGeneratorArr = ResidueGenerator.findAll().toArray()

@@ -98,6 +98,7 @@ When(~'^I fill the residue generator information with username "([^"]*)"$') { St
 And(~'^username "([^"]*)" has not been created yet'){String username ->
 
     generator = ResidueGenerator.findByUsername(username)
+    usernamePerma = username
     if(generator != null){
         generator.delete(flush:true)
     }
@@ -110,9 +111,8 @@ And(~'^I register the new generator'){ ->
 }
 
 Then(~'^A generator is stored at the system'){ ->
-    //assert !page.hasErrors()
- //   at ResidueGeneratorShowPage
-    //assert withConfirm(true) { $("input", name: "showConfirm").click() } == "Generator was created!"
+    generator =  ResidueGenerator.findByUsername(usernamePerma)
+    assert generator != null
 }
 
 //Scenario: duplicated residue generator username web
@@ -128,7 +128,7 @@ And(~'^username "([^"]*)" has already been created'){String username ->
     //assert  generator != null
 }
 
-Then(~'^I see a error message'){ ->
+Then(~'^I see an error'){ ->
     assert page.hasErrors()
 }
 //#end
