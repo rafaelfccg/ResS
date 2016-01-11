@@ -47,7 +47,7 @@ public class AdminUserTestDataAndOperations {
         def controller = new AdminUserController()
         def newAdminUser = [adminName: "Name",
                             adminCpf: "Cpf",
-                            adminLogin: "login",
+                            adminLogin: "admin",
                             adminPassword: "Password",
                             adminEmail: email,
                             adminPhone: "phone"]
