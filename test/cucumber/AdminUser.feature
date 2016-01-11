@@ -12,7 +12,7 @@ Feature: admin user
 @ignore
   Scenario: edit admin user
 	Given the system has an user with the email "johndoe@johndoe.com"
-	When I change it to "email@email.com"
+	When I change the email to "email@email.com"
 	Then the user with the email "email@email.com" is stored
 
   Scenario: edit admin user gui
