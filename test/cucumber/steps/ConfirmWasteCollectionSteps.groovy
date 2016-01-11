@@ -15,7 +15,7 @@ Given (~'^the system has a waste collection solicitation by "([^"]*)" residue ge
     assert residueGenerator != null && residueGenerator.hasActiveHarvest
 }
 
-And (~'^the solicitation is pending$') {
+And (~'^the solicitation is pending$') { ->
 
     CreateHarvestSolicitationTestDataAndOperations.createHarvestSolicitationByGenerator(residueGenerator)
     harvestSolicitation = HarvestSolicitation.findByResidueGenerator(residueGenerator)
@@ -31,7 +31,7 @@ When (~'^I confirm the "([^"]*)" waste collection$') { String name ->
 
 }
 
-Then (~'^the waste collection confirmation is registered$') {
+Then (~'^the waste collection confirmation is registered$') { ->
 
     assert HarvestSolicitation.findByResidueGenerator(residueGenerator) != null && HarvestSolicitation.findByStatus("Confirmed") != null && HarvestSolicitation.findBySolicitationDate(harvestSolicitation.solicitationDate) != null
 
@@ -46,7 +46,7 @@ Given (~'^the system already has a waste collection solicitation by "([^"]*)" re
     assert residueGenerator != null && !residueGenerator.hasActiveHarvest
 }
 
-And (~'^this solicitation is already confirmed$') {
+And (~'^this solicitation is already confirmed$') { ->
 
     CreateHarvestSolicitationTestDataAndOperations.createConfirmedHarvestSolicitationByGenerator(residueGenerator)
     harvestSolicitation = HarvestSolicitation.findByResidueGenerator(residueGenerator)
@@ -54,7 +54,7 @@ And (~'^this solicitation is already confirmed$') {
     assert residueGenerator.harvestSolicitation == null && harvestSolicitation != null && harvestSolicitation.status == "Confirmed"
 }
 
-Then (~'^the confirmation do not overwrite the previous one$') {
+Then (~'^the confirmation do not overwrite the previous one$') { ->
 
     assert harvestSolicitation.solicitationDate <= newDate()
 

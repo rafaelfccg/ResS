@@ -1,14 +1,11 @@
 package pages
 
-
 import geb.Page
 
 class SolicitacaoColetaViewPage extends Page {
-    def titulo = "Criar solicitacao de coleta"
+    def titulo = "Solicitacao de coleta"
 
     static url = "ResS/generatorHarvestSolicitation/index/1"
-
-   // static url = "ResS/solicitacaoColetas/index/3"
 
 
     static at = {
@@ -37,4 +34,10 @@ class SolicitacaoColetaViewPage extends Page {
             return true
         }
     }
+	
+    def generateReport(){
+	}
+	
+	def printReport(){
+	}
 }

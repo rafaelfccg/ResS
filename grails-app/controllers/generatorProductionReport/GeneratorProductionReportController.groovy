@@ -1,15 +1,12 @@
 package generatorProductionReport
 
-
 import residueGenerator.HarvestSolicitation
 import residueGenerator.ResidueGenerator
-
 
 /**
  * Created by ess on 16/11/15.
  */
 class GeneratorProductionReportController {
-
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     GeneratorProductionReport gen;
@@ -34,6 +31,18 @@ class GeneratorProductionReportController {
         return new GeneratorProductionReport()
     }
 
+    def createYearlyReport(int years) {
+
+        def report = new GeneratorProductionReport()
+        report.monthsBack = years
+        report.type = "ano"
+
+        report.computeData()
+
+        return report
+
+    }
+
     def save(long id){
         print(params)
         def generatorProductionReportInstance = new GeneratorProductionReport(params)
@@ -49,6 +58,7 @@ class GeneratorProductionReportController {
         //    render(view: "create", model: [generatorProductionReportInstance: generatorProductionReportInstance, periodList:periodList])
         //    return
         //}
+
         if (!generatorProductionReportInstance) {
             print("TA NULO? LOL")
 
@@ -68,5 +78,4 @@ class GeneratorProductionReportController {
         [generatorProductionReportInstance: generatorProductionReportInstance]
 
     }
-
 }
