@@ -94,7 +94,7 @@
             </li>
             <li>
                 <label>Quantos periodos no relatorio?</label>
-                <g:field name="monthsBack" type="number" min="0" value="${generatorProductionReportInstance.monthsBack}" required=""/>
+                <g:field name="monthsBack" type="number" min="1" value="${generatorProductionReportInstance.monthsBack}" required=""/>
             </li>
         </ul>
 

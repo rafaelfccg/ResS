@@ -49,19 +49,24 @@ class GeneratorProductionReport {
             double sum = 0
             int counter = 0
             double[] val = new double[monthsBack]
+            Date lastDate = ((HarvestSolicitation)array[0]).confirmationDate
             ResidueGenerator gen = residueGeneratorArr[i]
             for (int j =0; j<array.length;j++){
 
-                HarvestSolicitation res =  array[i]
+                HarvestSolicitation res =  array[j]
 
                 if(gen.nameGenerator == res.residueGenerator.nameGenerator) {
+                    print(gen.nameGenerator)
                     sum += res.estimatedAmountOfResidue;
-                    val[counter] = res.estimatedAmountOfResidue
-                    counter++
-
+                    val[counter] += res.estimatedAmountOfResidue
+                    if (res.confirmationDate.month > lastDate.month){
+                        counter++
+                        lastDate = res.confirmationDate
+                    }
                 }
 
             }
+            counter++
             avgProduction[i] = sum/counter
             sum = 0;
             for (int j =0; j<counter;j++){

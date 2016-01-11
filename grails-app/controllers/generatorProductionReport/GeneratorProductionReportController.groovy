@@ -9,7 +9,7 @@ import residueGenerator.ResidueGenerator
 class GeneratorProductionReportController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
-    GeneratorProductionReport gen;
+    static GeneratorProductionReport gen;
 
 
     def index() {
@@ -22,8 +22,8 @@ class GeneratorProductionReportController {
 //        params.put("harvestSolicitations",hasManyrelation)
 //        params.put("creationDate",data)
 
-        def generatorProductionReportInstance = new GeneratorProductionReport(params)
-        [generatorProductionReportInstance: generatorProductionReportInstance, periodList:periodList]
+        gen  = new GeneratorProductionReport(params)
+        [generatorProductionReportInstance: gen, periodList:periodList]
         //redirect(action: "show", id: generatorProductionReportInstance.id)
     }
 
@@ -33,36 +33,31 @@ class GeneratorProductionReportController {
 
     def save(long id){
         print(params)
-        def generatorProductionReportInstance = new GeneratorProductionReport(params)
-        generatorProductionReportInstance.creationDate = new Date()
+        GeneratorProductionReportController.gen = new GeneratorProductionReport(params)
+        GeneratorProductionReportController.gen.creationDate = new Date()
         Date data = new Date()
         Date last = data
         last.setMonth(last.getMonth() -5)
-        generatorProductionReportInstance.harvestSolicitations =  HarvestSolicitation.findAllByConfirmationDateGreaterThan(last)
-        generatorProductionReportInstance.computeData()
+        GeneratorProductionReportController.gen.harvestSolicitations =  HarvestSolicitation.findAllByConfirmationDateGreaterThan(last)
+        GeneratorProductionReportController.gen.computeData()
 
-        //if(!generatorProductionReportInstance.save(flush: true, failOnError: true)){
-        //    List<String> periodList = ["mes","ano"]
-        //    render(view: "create", model: [generatorProductionReportInstance: generatorProductionReportInstance, periodList:periodList])
-        //    return
-        //}
-        if (!generatorProductionReportInstance) {
-            print("TA NULO? LOL")
-
-        }
-        redirect(action: "show", gene: generatorProductionReportInstance)
+        redirect(action: "show", gene:  GeneratorProductionReportController.gen)
     }
 
     def show(GeneratorProductionReport gene) {
-        def generatorProductionReportInstance = gene // GeneratorProductionReport.get(id)
 
+        def generatorProductionReportInstance = GeneratorProductionReportController.gen.monthsBack // GeneratorProductionReport.get(id)
+        print( GeneratorProductionReportController.gen.monthsBack)
+        for (int i = 0 ; i<  GeneratorProductionReportController.gen.avgProduction.length;i++){
+            print(GeneratorProductionReportController.gen.names[i])
+        }
         if (!generatorProductionReportInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'generatorProductionReportInstance.label', default: 'GeneratorProductionReport'), id])
             //redirect(action: "list")
 
             return
         }
-        [generatorProductionReportInstance: generatorProductionReportInstance]
+        [generatorProductionReportInstance:  GeneratorProductionReportController.gen]
 
     }
 }
