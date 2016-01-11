@@ -26,23 +26,23 @@ Feature: Residue Generator Production Report
     When I click ask the system to produce a report based on the last "5" months
     Then I am at the Report Waste Production page
     And the report is empty
-
+@ignore
   Scenario: export Residue Production report as CSV
     Given I have a residue production report
     When I ask the system to export the report into a csv with name "relatorio.csv" and path "~\Downloads"
     Then The system saves a file to my computer
-
+  @ignore
   Scenario: fail to export Residue Production report as CSV
     Given I have a residue production report
     When I ask the system to export the report into a csv with name "relatorio.csv" and path "~\AAss"
     And the path "~\AAss" does not exists
     Then The system dont save the file to my computer
-
+  @ignore
   Scenario: export Residue Production report as CSV web
     Given I am at the residue production report page
     When I select the option to export the report into a csv with name "relatorio.csv" and path "~\Downloads"
     Then The system saves a file to my computer
-
+  @ignore
   Scenario: fail to export Residue Production report as CSV web
     Given I am at the residue production report page
     When I select the option to export the report into a csv with name "relatorio.csv" and path "~\AAss"
