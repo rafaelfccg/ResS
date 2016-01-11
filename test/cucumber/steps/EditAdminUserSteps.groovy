@@ -36,6 +36,9 @@ And(~'^I am at the edit user page$'){ ->
     to AdminUserEditPage
     at AdminUserEditPage
 }
+When(~'^I change the email to "([^"]*)"$') { String email ->
+    AdminUserTestDataAndOperations.editUser(email,user)
+}
 When(~'^I ask the system to change the email to blank$') { ->
     page.fillEmail("")
     page.submitUserInfo()
@@ -56,4 +59,7 @@ Then(~'^an error message is displayed$'){->
 }
 Then(~'^the new information is not stored in the system$'){ ->
     assert AdminUser.findByAdminEmail(newEmail) == null
+}
+Then(~'^the user with the email "([^"]*)" is stored$'){ String email ->
+    assert AdminUser.findByAdminEmail(email) != null
 }
