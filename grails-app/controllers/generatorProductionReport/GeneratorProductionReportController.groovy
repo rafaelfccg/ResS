@@ -31,6 +31,18 @@ class GeneratorProductionReportController {
         return new GeneratorProductionReport()
     }
 
+    def createYearlyReport(int years) {
+
+        def report = new GeneratorProductionReport()
+        report.monthsBack = years
+        report.type = "ano"
+
+        report.computeData()
+
+        return report
+
+    }
+
     def save(long id){
         print(params)
         def generatorProductionReportInstance = new GeneratorProductionReport(params)
@@ -46,6 +58,7 @@ class GeneratorProductionReportController {
         //    render(view: "create", model: [generatorProductionReportInstance: generatorProductionReportInstance, periodList:periodList])
         //    return
         //}
+
         if (!generatorProductionReportInstance) {
             print("TA NULO? LOL")
 

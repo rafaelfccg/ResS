@@ -19,6 +19,19 @@ class CreateResidueProductionReportPage extends Page{
 
     }
 
+    def fillFields(String type, int period){
+
+        $("select", name:type).find(type)
+        $("form").find("field", name:"monthsBack").value(period)
+
+    }
+
+    def clickSubmit() {
+
+        $("submit").click()
+
+    }
+
     def clickNewMonthlyReport(){
         $("monthReport").click()
     }

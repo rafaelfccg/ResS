@@ -76,32 +76,39 @@ And(~'^the report is empty'){->
     assert page.hasEmptyMessage()
 }
 
-When (~'^the system receives a request to generate the residue generator production report for the month of "([^"]*)" for the last "([^"]*)" years$') { String month, int yearsAgo ->
+When (~'^the system receives a request to generate an annual residue generator production report for a period of "([^"]*)" years for that month$') { int yearsAgo ->
 
-    //to do
-
-}
-
-Then (~'^a report with data for that month and years is generated$') { ->
-
-    //to do
+    GeneratorProductionReportController otherController = new GeneratorProductionReportController()
+    historicReport = otherController.createYearlyReport(yearsAgo)
 
 }
 
-When(~'I select the generate report button$') { ->
+Then (~'^a report with average data and comparison for that month and years is generated$') { ->
 
-    //to do
+    assert historicReport != null
+
+    if(historicReport.names != null && historicReport.harvestSolicitations != null) {
+
+        assert historicReport.avgProduction != 0 && historicReport.stdProduction != 0
+
+    }
 
 }
 
-And(~'I fill the required fields correctly$') { ->
+And(~'^the report has no data available') { ->
 
-    //to do
+    assert historicReport.harvestSolicitations == null && historicReport.numberOfGenerators == 0
 
 }
 
-Then (~'^I am at the Historical Month Report Waste Production page$') { ->
+When(~'I select the button to generate the report$') { ->
 
-    //to do
+   page.clickSubmit()
+
+}
+
+And(~'I fill the type and period fields correctly$') { ->
+
+    page.fillFields("ano", 3)
 
 }
