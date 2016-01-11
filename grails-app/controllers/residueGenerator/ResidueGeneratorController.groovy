@@ -41,7 +41,7 @@ class ResidueGeneratorController {
             render(view: "create", model: [residueGeneratorInstance: residueGeneratorInstance])
             return
         }
-        residueGeneratorInstance.errors
+
         flash.message = message(code: 'default.created.message', args: [message(code: 'residueGenerator.label', default: 'ResidueGenerator'), residueGeneratorInstance.id])
         redirect(action: "show", id: residueGeneratorInstance.id)
 

@@ -20,58 +20,79 @@ class GeneratorProductionReport {
     static hasMany = [harvestSolicitations:HarvestSolicitation]
 
     def hasGenerator(String withAddress){
-        def array = harvestSolicitations.toArray();
-        for(int i = 0; i < array.length; i++){
-            HarvestSolicitation res =  array[i]
-            if(res.residueGenerator.addressGenerator == withAddress) {
-                return true;
+        if (harvestSolicitations != null) {
+            def array = ResidueGenerator.findAll().toArray();
+//            print("checking")
+//            print(array.length)
+            for (int i = 0; i < array.length; i++) {
+                ResidueGenerator res = array[i]
+//                print(res.residueGenerator.addressGenerator)
+                if (res.addressGenerator == withAddress) {
+                    return true;
+                }
             }
         }
         return false;
     }
     def isEmpty(){
-        return harvestSolicitations.toArray().length == 0
+        if (harvestSolicitations != null) {
+            return harvestSolicitations.toArray().length == 0
+        }
+        return true
     }
-    def computeData(){
+    def computeData() {
         def residueGeneratorArr = ResidueGenerator.findAll().toArray()
         def array = harvestSolicitations.toArray();
-        avgProduction = new double[residueGeneratorArr.length]
-        stdProduction = new double[residueGeneratorArr.length]
-        isHigher = new boolean[residueGeneratorArr.length]
-        names = new String[residueGeneratorArr.length]
+        avgProduction = new double[1]
+        stdProduction = new double[1]
+        isHigher = new boolean[1]
+        names = new String[1]
+        names[0] = "No collection registered"
         // for now I will use brute force to compute  avg and std of each
-        for (int i = 0 ; i< residueGeneratorArr.length;i++){
-            double sum = 0
-            int counter = 0
-            double[] val = new double[monthsBack]
-            ResidueGenerator gen = residueGeneratorArr[i]
-            for (int j =0; j<array.length;j++){
+        if (array.length > 0) {
+            avgProduction = new double[residueGeneratorArr.length]
+            stdProduction = new double[residueGeneratorArr.length]
+            isHigher = new boolean[residueGeneratorArr.length]
+            names = new String[residueGeneratorArr.length]
+            for (int i = 0; i < residueGeneratorArr.length; i++) {
+                double sum = 0
+                int counter = 0
+                double[] val = new double[monthsBack]
+                Date lastDate = ((HarvestSolicitation) array[0]).confirmationDate
 
-                HarvestSolicitation res =  array[i]
+                ResidueGenerator gen = residueGeneratorArr[i]
+                for (int j = 0; j < array.length; j++) {
 
-                if(gen.nameGenerator == res.residueGenerator.nameGenerator) {
-                    sum += res.estimatedAmountOfResidue;
-                    val[counter] = res.estimatedAmountOfResidue
-                    counter++
+                    HarvestSolicitation res = array[j]
+
+                    if (gen.nameGenerator == res.residueGenerator.nameGenerator) {
+                        print(gen.nameGenerator)
+                        sum += res.estimatedAmountOfResidue;
+                        val[counter] += res.estimatedAmountOfResidue
+                        if (res.confirmationDate.month > lastDate.month) {
+                            counter++
+                            lastDate = res.confirmationDate
+                        }
+                    }
 
                 }
+                counter++
+                avgProduction[i] = sum / counter
+                sum = 0;
+                for (int j = 0; j < counter; j++) {
+                    int dif = val[j] - avgProduction[i]
+                    sum += dif * dif
+                }
+                if (counter > 0 && avgProduction[i] > val[counter - 1]) isHigher[i] = 0
+                else isHigher[i] = true
+
+                stdProduction[i] = Math.sqrt(sum / counter)
+                names[i] = gen.nameGenerator
 
             }
-            avgProduction[i] = sum/counter
-            sum = 0;
-            for (int j =0; j<counter;j++){
-                int dif = val[j] - avgProduction[i]
-                sum += dif*dif
-            }
-            if( counter > 0  && avgProduction[i] > val[counter-1]) isHigher[i] = 0
-            else  isHigher[i] = true
 
-            stdProduction[i] = Math.sqrt(sum/counter)
-            names[i] = gen.nameGenerator
 
         }
-
-
     }
 
 }

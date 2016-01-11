@@ -7,8 +7,8 @@ import geb.Page
  */
 class ResidueGeneratorShowPage extends Page{
 
-    def titulo = "http://localhost:8070/residueGenerator/show/1"
-    static url = "residueGenerator/show/1"
+    def titulo = "http://localhost:8070/residueGenerator/show"
+    static url = "residueGenerator/show"
 
     static at = {
         title ==~ titulo
