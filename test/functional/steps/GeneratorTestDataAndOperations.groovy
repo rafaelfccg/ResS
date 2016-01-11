@@ -45,11 +45,7 @@ class GeneratorTestDataAndOperations{
 
             [nameGenerator:"RU2",
              type: "Restaurante",
-<<<<<<< HEAD
-             cnpj: "testecnpj1",
-=======
              cnpj: "11111111111111",
->>>>>>> e5d97f11bc0efdc4bba9469b970dfb2947969e0e
              username: "Los_Pollos6",
              password: "Abcd1234@",
              addressGenerator: "endereco",
@@ -58,21 +54,12 @@ class GeneratorTestDataAndOperations{
 
             [nameGenerator:"Clovis Palace",
              type: "Restaurante",
-<<<<<<< HEAD
-             cnpj: "testecnpj2",
-=======
              cnpj: "22222222222222",
->>>>>>> e5d97f11bc0efdc4bba9469b970dfb2947969e0e
              username: "Los_Pollos7",
              password: "Abcd1238@",
              addressGenerator: "endereco2",
              averageMonthlyMeals: 0,
-<<<<<<< HEAD
-             averageDailyMeals: 10]
-=======
              averageDailyMeals: 0]
->>>>>>> e5d97f11bc0efdc4bba9469b970dfb2947969e0e
-
     ]
 
     static public def getGenerator(){
