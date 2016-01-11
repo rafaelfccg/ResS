@@ -27,10 +27,6 @@ class GeneratorProductionReportController {
         //redirect(action: "show", id: generatorProductionReportInstance.id)
     }
 
-    def createMonthlyReport(int months){
-        return new GeneratorProductionReport()
-    }
-
     def save(long id){
         print(params)
         GeneratorProductionReportController.gen = new GeneratorProductionReport(params)
@@ -48,9 +44,7 @@ class GeneratorProductionReportController {
 
         def generatorProductionReportInstance = GeneratorProductionReportController.gen.monthsBack // GeneratorProductionReport.get(id)
         print( GeneratorProductionReportController.gen.monthsBack)
-        for (int i = 0 ; i<  GeneratorProductionReportController.gen.avgProduction.length;i++){
-            print(GeneratorProductionReportController.gen.names[i])
-        }
+
         if (!generatorProductionReportInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'generatorProductionReportInstance.label', default: 'GeneratorProductionReport'), id])
             //redirect(action: "list")

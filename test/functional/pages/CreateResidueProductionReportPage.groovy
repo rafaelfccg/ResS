@@ -6,8 +6,9 @@ import geb.Page
  * Created by ess on 23/11/15.
  */
 class CreateResidueProductionReportPage extends Page{
-    def titulo = "http://localhost:8070/generatorProductionReport/create/1"
-    static url = "/generatorProductionReport/create/1"
+    def titulo = "Criar relatorio de producao de residuo"
+
+    static url = "ResS/generatorProductionReport/create/1"
 
     static at = {
         title ==~ titulo
@@ -21,7 +22,7 @@ class CreateResidueProductionReportPage extends Page{
     }
 
     def clickNewMonthlyReport(){
-        $("input[name='Ok']").click()
+        $("input", type: "submit").click()
     }
     //look generator edit page
     def boolean hasEmptyMessage(){

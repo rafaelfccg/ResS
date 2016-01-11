@@ -22,16 +22,25 @@ import static cucumber.api.groovy.EN.*
 
 Given(~'^the system has a residue generator at "([^"]*)" registered$'){ String address ->
     GeneratorTestDataAndOperations.createGenerator(address);
+
 }
 
 When(~'^the system generates an production report for the last "([^"]*)" months$') { int num ->
     // Express the Regexp above with the code you wish you had
     GeneratorProductionReportController controller = new GeneratorProductionReportController()
-    report  = controller.createMonthlyReport(num)
+    report  = ProductionReportTestDataAndOperations.report
+    ProductionReportTestDataAndOperations.setReport(num)
 }
 Then(~'^the residue generator at "([^"]*)" appears at the report$') { String address ->
     // Express the Regexp above with the code you wish you had
+    //assert ResidueGenerator.findByAddressGenerator(address)
+    report = ProductionReportTestDataAndOperations.getReport()
     assert report.hasGenerator(address)
+}
+
+Then(~'^nothing has been changed$') { ->
+   // check every Harvest solicitation AND Residue generator?
+
 }
 //  Scenario: generate empty month based Residue Production report
 //Given the system has no registered residue Generator
@@ -74,6 +83,5 @@ Then(~'^I am at the Report Waste Production page'){->
 
 
 And(~'^the report is empty'){->
-    //??
     assert page.hasEmptyMessage()
 }
