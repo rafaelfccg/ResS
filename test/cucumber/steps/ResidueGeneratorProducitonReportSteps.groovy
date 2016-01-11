@@ -61,6 +61,7 @@ When(~'^I click ask the system to produce a report based on the last "([^"]*)" m
     page.clickNewMonthlyReport()
 }
 Then(~'^I am at the Report Waste Production page'){->
+    to ResidueProductionReportPage
     at ResidueProductionReportPage
 }
 

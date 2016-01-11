@@ -39,18 +39,16 @@ Feature: Residue Generator Production Report
     When the system receives a request to generate an annual residue generator production report for a period of "3" years for that month
     Then the report has no data available
 
-  @ignore
   Scenario: generate historical month based residue production report web
      Given I am at the Create Residue Generator Report page
      When I select the button to generate the report
      And I fill the type and period fields correctly
      Then I am at the Report Waste Production page
 
-  @ignore
   Scenario: generate empty historical month based residue production report web
      Given I am at the Create Residue Generator Report page
      And the system has no registered residue Generator
      When I select the button to generate the report
      And I fill the type and period fields correctly
      Then I am at the Report Waste Production page
-     And the report is empty
+     And the report has no data available
