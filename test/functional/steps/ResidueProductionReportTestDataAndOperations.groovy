@@ -22,7 +22,7 @@ class ResidueProductionReportTestDataAndOperations {
              cnpj: "testecnpj2",
              username: "Los_Pollos2",
              password: "Abcd1238@",
-             addressGenerator: "Bubble Street number 4",
+             addressGenerator: "endereco2",
              averageMonthlyMeals: 0,
              averageDailyMeals: 0],
 
@@ -59,7 +59,6 @@ class ResidueProductionReportTestDataAndOperations {
         cont.create()
         cont.save()
         cont.response.reset()
-
     }
 
 }
