@@ -28,7 +28,7 @@ class AdminUserController {
             return
         }
 
-        flash.message = message(code: 'default.created.message', args: [message(code: 'adminUser.label', default: 'AdminUser'), adminUserInstance.adminLogin])
+        flash.message = message(code: 'default.created.message', args: [message(code: 'adminUser.label', default: 'AdminUser'), adminUserInstance.id])
         redirect(action: "index")
     }
 
