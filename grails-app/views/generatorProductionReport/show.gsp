@@ -33,18 +33,18 @@
             <g:sortableColumn property="isHigher" title="${message(code: 'residueGenerator.averageDailyMeals.label', default: 'isHigher')}" />
         </tr>
         </thead>
-        <g>
+        <tbody>
             <g:each in="${generatorProductionReportInstance.avgProduction}" status="i" var="avg">
 
                 <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 
-                    <td>${fieldValue(bean: generatorProductionReportInstance.names[i])}</td>
+                    <td>${generatorProductionReportInstance.names[i]}</td>
 
-                    <td>${fieldValue(bean:generatorProductionReportInstance.avg[i])}</td>
+                    <td>${generatorProductionReportInstance.avgProduction[i]}</td>
 
-                    <td>${fieldValue(bean: generatorProductionReportInstance.stdProduction[i])}</td>
+                    <td>${generatorProductionReportInstance.stdProduction[i]}</td>
 
-                    <td>${fieldValue(bean: generatorProductionReportInstance.isHigher[i])}</td>
+                    <td>${generatorProductionReportInstance.isHigher[i]}</td>
 
                 </tr>
             </g:each>
