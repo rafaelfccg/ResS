@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ResS.iml" filepath="$PROJECT_DIR$/ResS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ResS-grailsPlugins.iml" filepath="$PROJECT_DIR$/ResS-grailsPlugins.iml" />
     </modules>
   </component>
 </project>

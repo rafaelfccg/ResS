@@ -25,6 +25,10 @@ class GeneratorHarvestSolicitationController {
     def save(){
         def harvestSolicitationInstance = new HarvestSolicitation(params)
         harvestSolicitationInstance.solicitationDate = new Date()
+
+        //added to conform to new domain
+        harvestSolicitationInstance.confirmationDate = null
+
         harvestSolicitationInstance.status = "Pendente"
         harvestSolicitationInstance.residueGenerator = ResidueGenerator.get(harvestSolicitationInstance.generatorId)
 
@@ -40,5 +44,24 @@ class GeneratorHarvestSolicitationController {
         redirect(action: "index", id: harvestSolicitationInstance.generatorId)
     }
 
+    def confirm() {
+
+        def residueGeneratorInstance = ResidueGenerator.get(params.generatorId)
+        def harvestSolicitationInstance = residueGeneratorInstance.harvestSolicitation
+
+        if(harvestSolicitationInstance) {
+
+            harvestSolicitationInstance.status = "Confirmada"
+            harvestSolicitationInstance.confirmationDate = new Date()
+            residueGeneratorInstance.hasActiveHarvest = false
+
+            harvestSolicitationInstance.save()
+            residueGeneratorInstance.save()
+
+            redirect(action: "index", id: residueGeneratorInstance.id)
+
+        }
+
+    }
 
 }

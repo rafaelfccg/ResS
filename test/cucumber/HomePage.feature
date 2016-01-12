@@ -2,7 +2,7 @@ Feature: Home Page
   As an user of the ResS system
   I want to use the ResS home page
   So that i can have access to all the other features
-
+@ignore
   Scenario: Access ResS github repository
     Given I am at the main page
     When I select the github ribbon

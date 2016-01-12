@@ -16,3 +16,4 @@ stacktrace.log
 .idea/workspace.xml
 /grails-app/conf/BuildConfig.groovy
 *.properties
+GebConfig.groovy

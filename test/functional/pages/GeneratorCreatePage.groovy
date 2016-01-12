@@ -14,6 +14,8 @@ class GeneratorCreatePage extends Page{
     def fillGeneratorDetails(LinkedHashMap gerador){
 
         $("form").nameGenerator = gerador.nameGenerator
+        $("form").username = gerador.username
+        $("form").password = gerador.password
         $("form").type = gerador.type
         $("form").cnpj = gerador.cnpj
         $("form").addressGenerator = gerador.addressGenerator

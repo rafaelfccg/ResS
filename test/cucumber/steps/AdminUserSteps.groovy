@@ -13,19 +13,19 @@ When I register a user called "John Doe", with CPF "123.456.789-12", login "admi
 Then the user "admin" is stored in the system
 */
 
-Given(~'^The system has no user with the CPF "[^"*]"$'){String cpf->
+Given(~'^the system has no user with the CPF "([^"]*)"$'){String cpf->
     userCpf = AdminUser.findByAdminCpf(cpf)
     assert userCpf == null
 }
-And(~'^has no user with the login "[^"*]"$'){String login->
+And(~'^has no user with the login "([^"]*)"$'){String login->
     userLogin = AdminUser.findByAdminLogin(login)
     assert userLogin == null
 }
-When(~'^I register a user called "[^"*]", with CPF "[^"*]", login "[^"*]", password "[^"*]", email "[^"*]" and phone "[^"*]" $'){
+When(~'^I register a user called "([^"]*)", with CPF "([^"]*)", login "([^"]*)", password "([^"]*)", email "([^"]*)" and phone "([^"]*)"$'){
     String name, String cpf, String login, String password, String email, String phone ->
         AdminUserTestDataAndOperations.createUser(name, cpf, login, password, email, phone)
 }
-Then(~'^The user "[^"*]" is stored in the system$'){ String login ->
+Then(~'^the user "([^"]*)" is stored in the system$'){ String login ->
     userLogin = AdminUser.findByAdminLogin(login)
     assert userLogin != null
 }
@@ -42,11 +42,11 @@ Given(~'^I’m at the sign up page$'){->
     to AdminUserSignUpPage
     at AdminUserSignUpPage
 }
-When(~'^When I ask the system to add a user called"[^"*]", with CPF "[^"*]", login "[^"*]", password "[^"*]", email "[^"*]" and phone "[^"*]" $'){
+When(~'^I ask the system to add a user called "([^"]*)", with CPF "([^"]*)", login "([^"]*)", password "([^"]*)", email "([^"]*)" and phone "([^"]*)"$'){
     String name, String cpf, String login, String password, String email, String phone ->
         page.fillUserInfo(name, cpf, login, password, email, phone)
         page.submitUserInfo()
 }
-Then(~'^I see a confirmation message$'){->
-    assert page.hasMessage()
+Then(~'^I see a message confirming the user registration$'){->
+    assert !page.hasErrors()
 }

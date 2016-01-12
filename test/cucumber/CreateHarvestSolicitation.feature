@@ -23,7 +23,7 @@ Feature: Create a harvest solicitation
       And   I submit the harvest solicitation
       Then  the system should not create a harvest solicitation
 
-
+@ignore
      Scenario: Successful creation of a harvest solicitation web
        Given I am at the harvest solicitation creation page
        When  I fill the amount of residue field with "40"
