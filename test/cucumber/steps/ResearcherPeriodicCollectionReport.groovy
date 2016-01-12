@@ -1,7 +1,7 @@
 package steps
 
 import pages.ColetaListPage
-//import pages.CollectReportPage
+import pages.CollectReportPage
 
 import static cucumber.api.groovy.EN.*
 

@@ -21,12 +21,12 @@ class Coleta {
         senha blank: false
     }
 
-    static searchable = true
+//    static searchable = true
 
-//    static searchable = {
-//       'data' format:'MMddyyyy'
-//       
-//    }
+    static searchable = {
+       'data' format:'MMddyyyy'
+       
+    }
 
     void setName(String novoNome){
         if(Coleta.findByNomeAndData(novoNome,this.data) == null){
