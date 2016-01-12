@@ -95,4 +95,8 @@ class GeneratorProductionReport {
         }
     }
 
+    def saveCSV(String name, String path){
+
+
+    }
 }

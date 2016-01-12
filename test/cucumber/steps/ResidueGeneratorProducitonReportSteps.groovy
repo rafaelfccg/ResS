@@ -85,3 +85,65 @@ Then(~'^I am at the Report Waste Production page'){->
 And(~'^the report is empty'){->
     assert page.hasEmptyMessage()
 }
+
+//@ignore
+// Scenario: export Residue Production report as CSV
+//Given I have a residue production report
+//When I ask the system to export the report into a csv with name "relatorio.csv" and path "~\Downloads"
+//Then The system saves a file to my computer
+
+Given(~'I have a residue production report'){->
+    ProductionReportTestDataAndOperations.setReport(5)
+}
+
+When(~'I ask the system to export the report into a csv with name "([^"]*)" and path "([^"]*)"'){String name, String path->
+    ProductionReportTestDataAndOperations.getReport().saveCSV(name,path);
+    checkPath = path+"\\"+name
+}
+
+Then(~'The system saves a file to my computer'){->
+    File f = new File(checkPath)
+    assert f.exists()
+}
+
+
+//@ignore
+//        Scenario: fail to export Residue Production report as CSV
+//Given I have a residue production report
+//When I ask the system to export the report into a csv with name "relatorio.csv" and path "~\AAss"
+//And the path "~\AAss" does not exists
+//Then The system doesnt save the file to my computer
+
+And(~'the path "([^"]*)" does not exists'){String path ->
+    File f = new File(path)
+    assert !f.exists()
+}
+Then(~'The system doesnt save the file to my computer'){->
+    File f = new File(checkPath)
+    assert !f.exists()
+}
+//@ignore
+//Scenario: export Residue Production report as CSV web
+//Given I am at the residue production report page
+//When I select the option to export the report into a csv with name "relatorio.csv" and path "~\Downloads"
+//Then I see a confirmation that the file was saved
+//@ignore
+
+Given(~'I am at the residue production report page'){->
+    to CreateResidueProductionReportPage
+    page.fillPeriod(5)
+    page.clickNewMonthlyReport()
+    at ResidueProductionReportPage
+}
+When(~'I select the option to export the report into a csv with name "([^"]*)" and path "([^"]*)"'){String name, String path->
+    page.clickExportCSV(name,path)
+}
+
+Then(~'I see a confirmation that the file was saved'){->
+
+}
+// Scenario: fail to export Residue Production report as CSV web
+//Given I am at the residue production report page
+//When I select the option to export the report into a csv with name "relatorio.csv" and path "~\AAss"
+//And the path "~\AAss" does not exists
+//Then I see an error about the exporting file

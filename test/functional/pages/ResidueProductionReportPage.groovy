@@ -22,5 +22,8 @@ class ResidueProductionReportPage extends Page{
             return false
         }
     }
+    def clickExportCSV(String name, String path){
+
+    }
 
 }
