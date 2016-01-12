@@ -22,8 +22,8 @@ Then an error is sent to the user
 
 Scenario: Generate new report
 Given I am at the Coletas page
-When I select the "Gerar Relatorio" option
-And I select the date range
+When I select the date range
+And I select "Gerar Relatorio" option
 Then I see the generated report
 
 @ignore

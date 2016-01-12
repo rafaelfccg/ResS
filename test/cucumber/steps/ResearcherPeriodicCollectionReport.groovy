@@ -32,7 +32,7 @@ Then (~'^a report is generated containing information on the collections made on
 
 
 //Scenario:Error in report generation
-Given (~'^no collections were made on any residue generator on month "12"$'){ ->
+Given (~'^no collections were made on any residue generator on month "([^"]*)"$'){ String month ->
     
 }
 
@@ -54,7 +54,7 @@ Then (~'^an error is sent to the user$'){
    	
 }
 
-//Controller
+//GUI
 
 //Scenario:Generate new report
 
@@ -62,16 +62,15 @@ Given (~'^I am at the Coletas page$'){ -> to ColetaListPage
     
 }
 
-When (~'^I select the "Gerar Relatorio" option$'){
-     -> at ColetaListPage
-     page.gerarRel()
-     to CollectReportPage
+When (~'^I select the date range$'){
+      -> at ColetaListPage
+     page.selectTodayDate()
+     
         
 }
 
-And (~'^I select the date range$'){
-    -> at CollectReportPage
-    page.selectTodayDate()
+And (~'^I select "([^"]*)" option$'){
+    String opt -> at ColetaListPage
     page.submit()
     to CollectReportPage
 }

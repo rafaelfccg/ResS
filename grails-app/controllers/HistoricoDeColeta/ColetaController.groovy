@@ -7,6 +7,10 @@ class ColetaController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
+    def searchableService
+    def exportService
+    def grailsApplication
+
     def index() {
         redirect(action: "list", params: params)
     }
@@ -108,27 +112,30 @@ class ColetaController {
 
     def genReport(){
         
-        //params.max = Math.min(max ?: 10, 100)
+        def query = params.q
+        if(query){
+            def srchResults = Coleta.findAllByDataBetween(params.q, params.q2)
            
-/*
-        def c = Coleta.createCriteria()
-        def coletaList = c.list(max: 10, offset: 10) {
-               
-            //between('data', d1, d2)
-            eq("nome", "aa")
 
-                //if (params.date1 && params.date2) {
-                   // def inicio = params.date1.clearTime()
-                   // def fim = params.date2.clearTime()
-                    
-                // }
-                
+            if(params?.format && params.format != "html"){
+                exportCSV(params)
+            }             
+
+            [coletaList: srchResults,
+                         coletaInstanceTotal:srchResults.size()]
+                     
+        }else{
+            exportCSV()
+            //redirect(action: "genReport")
         }
 
-     */   
-        def coletaList = Coleta.returnSearch(params.date1,params.date2)
-       [coletaList: coletaList, coletaInstanceTotal: Coleta.count()]
- 
+    }
 
+    def exportCSV(){
+        response.contentType = grailsApplication.config.grails.mime.types[params.format]
+        response.setHeader("Content-disposition", "attachment; filename=Relatorio.${params.extension}")
+                    
+        exportService.export(params.format, response.outputStream,Coleta.list(params), [:], [:])
+        [coletaList: Coleta.list(params)]
     }
 }
