@@ -8,7 +8,7 @@ import geb.Page
 class CreateResidueProductionReportPage extends Page{
     def titulo = "Criar relatorio de producao de residuo"
 
-    static url = "ResS/generatorProductionReport/create/1"
+    static url = "ResS/generatorProductionReport/create"
 
     static at = {
         title ==~ titulo
@@ -18,6 +18,19 @@ class CreateResidueProductionReportPage extends Page{
 
         $("input", name: "monthsBack").value(period)
        // $("select", name: "type").
+
+    }
+
+    def fillFields(String type, int period){
+
+        $("select", name:type).find(type)
+        $("form").find("field", name:"monthsBack").value(period)
+
+    }
+
+    def clickSubmit() {
+
+        $("submit").click()
 
     }
 

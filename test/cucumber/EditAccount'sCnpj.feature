@@ -4,14 +4,14 @@ Feature: Edit account's cnpj
   So that I can keep the system updated
 
 #if($EditGeneratorCnpj)
-  @tagQualquer
+  @ignore
   Scenario: Correctly edit the cnpj
     Given the system has a residue generator with cnpj "12345678912345"
     When I change my cnpj to "45912367834512"
     Then the generator with cnpj "45912367834512" is properly edited
 
 
-  @tagQualquer
+  @ignore
   Scenario: Incorrectly edit the cnpj
     Given the system has a residue generator with cnpj "12345678912345"
     When I change my cnpj to "testecnpj"

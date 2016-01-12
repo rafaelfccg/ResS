@@ -1,0 +1,32 @@
+Feature: Pendency at a residue collection request
+  As a restaurant owner
+  I want to be able to handle the pendency of a residue collection request
+  So I can see which residue collection requests are pendent
+
+#Created by Ricardo Barioni
+
+#Controller
+  Scenario: Pendency at a residue collection request
+    Given I am logged into the system as a restaurant
+    When I try to change the pendency of a residue collection request with Name "Lol"
+    And The residue collection request with Name "Lol" is pendent
+    Then The residue collection request with Name "Lol" will not be pendent anymore
+
+  Scenario: Fail to change pendency at a residue collection request
+    Given I am logged onto the system as a restaurant
+    When I try to change pendency of a residue collection request with Name "Lol2"
+    And The residue collection request with the Name "Lol2" is not pendent
+    Then The residue collection request with Name "Lol2" will still be not pendent
+
+#GUI
+  Scenario: Pendency at a residue collection request
+    Given I am at listing collection page
+    When The pendency of a residue collection request with Name "Lol" is written "Yes"
+    And I click on the pendency button
+    Then I should not see an error message
+
+  Scenario: Fail to change pendency at a residue collection request
+    Given I am at listing the collection page
+    When The pendency of an residue collection request with Name "Lol2" is written "No"
+    And I click at the pendency button
+    Then I shall see an error message

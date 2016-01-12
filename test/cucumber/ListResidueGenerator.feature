@@ -6,6 +6,7 @@ Feature: List of Residue Generator
 
 
 #if($list)
+  @ignore
   Scenario: listing Residue Generators
     Given the system has a Residue Generator at "Av. Jequitiboca" in it
     When the system list all existing Residue Generators

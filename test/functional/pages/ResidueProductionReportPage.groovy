@@ -7,7 +7,7 @@ import geb.Page
  */
 class ResidueProductionReportPage extends Page{
     def titulo = "Generator Production Report"
-    static url = "/generatorProductionReport/show/1"
+    static url = "ResS/generatorProductionReport/show"
 
     static at = {
         title ==~ titulo

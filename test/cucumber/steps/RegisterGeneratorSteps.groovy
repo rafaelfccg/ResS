@@ -20,8 +20,11 @@ When: I register the residue generator account "Los Pollos" with password "Abcd1
 Then: The account "Los_Pollos" with password "Abcd1234@" is created
 
 */
+
+
 //#if ($RegisterAResidueGenerator)
 Given(~'^That there is no restaurant with address "([^"]*)"$') { String address ->
+
 
     generator = ResidueGenerator.findByAddressGenerator(address)
     if (generator != null){

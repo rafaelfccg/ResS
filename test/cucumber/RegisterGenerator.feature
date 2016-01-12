@@ -5,7 +5,7 @@ Feature: register a residue generator
 
 
 #Controller
-
+@ignore
   Scenario: new valid generator
     Given That there is no restaurant with address "Rua Japecanga, 182"
     And there is no registered username "Los Pollos" in the database
@@ -13,7 +13,7 @@ Feature: register a residue generator
     When I register the residue generator account "Los Pollos" with password "Abcd1234@“ and address "Rua Japecanga, 182"
     Then The account "Los Pollos" with password "Abcd1234@" is created
 
-
+@ignore
   Scenario: duplicated residue generator username
     Given That there is no restaurant with address "Rua Japecanga, 182"
     And there is a registered username "Los Pollos" in the database
@@ -22,7 +22,7 @@ Feature: register a residue generator
     Then The account "Los Pollos" with password "Abcd1234@" is not created
 
 #GUI
-
+@ignore
   Scenario: new valid generator web
     Given I am at the register new generator page
     And username "Los_Pollos2" has not been created yet

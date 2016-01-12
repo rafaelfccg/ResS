@@ -22,14 +22,14 @@ Feature: Register a residue Collector
 	Then the new collecor with email "prefeitura_do_recife@recife.com.br"
 	And CNPJ "12300012300011" is not created
 
-
+@ignore
   Scenario: Edit existing collector
 	Given that there is a collector with email "prefeitura_do_recife@recife.com.br"
 	And I am at the editing page of this collector
 	When I change the field name to "Prefeitura"
 	And I click on "Save" button
 	Then the collector's name is changed successfully
-
+@ignore
   Scenario: Delete existing collector
 	Given that there is a collector with email "prefeitura_do_recife@recife.com.br"
 	And I am at the editing page of this collector
@@ -56,14 +56,14 @@ Feature: Register a residue Collector
 	And CNPJ I filled in the form
 	When I press the button "Register new Collector"
 	Then the system show me a error message "It is not possible to add this new Collector. This email or CNPJ is already being used!"
-
+  @ignore
   Scenario: Edit an existing collector
 	Given that there is a collector with email "prefeitura_do_recife@recife.com.br"
 	And I am at the editing page of this collector
 	When I change the field name to "Prefeitura"
 	And I click on "Save" button
 	Then I see a message "The collector's change was saved successfully!"
-
+  @ignore
   Scenario: Delete existing collector
 	Given that there is a collector with email "prefeitura_do_recife@recife.com.br"
 	And I am at the editing page of this collector

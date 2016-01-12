@@ -1,10 +1,15 @@
 package HistoricoDeColeta
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.orm.HibernateCriteriaBuilder
 
 class ColetaController {
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+
+    def searchableService
+    def exportService
+    def grailsApplication
 
     def index() {
         redirect(action: "list", params: params)
@@ -102,5 +107,35 @@ class ColetaController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
             redirect(action: "show", id: id)
         }
+    }
+
+
+    def genReport(){
+        
+        def query = params.q
+        if(query){
+            def srchResults = Coleta.findAllByDataBetween(params.q, params.q2)
+           
+
+            if(params?.format && params.format != "html"){
+                exportCSV(params)
+            }             
+
+            [coletaList: srchResults,
+                         coletaInstanceTotal:srchResults.size()]
+                     
+        }else{
+            exportCSV()
+            //redirect(action: "genReport")
+        }
+
+    }
+
+    def exportCSV(){
+        response.contentType = grailsApplication.config.grails.mime.types[params.format]
+        response.setHeader("Content-disposition", "attachment; filename=Relatorio.${params.extension}")
+                    
+        exportService.export(params.format, response.outputStream,Coleta.list(params), [:], [:])
+        [coletaList: Coleta.list(params)]
     }
 }

@@ -9,14 +9,8 @@ import static cucumber.api.groovy.EN.*
 //CONTROLLER
 
 //Scenario: Sending confirmation
-<<<<<<< HEAD
-Given(~'^that the system has a waste collection confirmed$'){ String name ->
-=======
-
-
 
 Given(~'^that the system has a waste collection confirmed$'){->
->>>>>>> 8eed4c3c65d8afa6ab588d7f88ddd26fef8f4132
     CreateHarvestSolicitationTestDataAndOperations.createGeneratorByName(name)
     residueGenerator = ResidueGenerator.findByNameGenerator(name)
 
@@ -55,7 +49,8 @@ Given(~'^that I’m logged in the system$'){
 
 }
 
-And(~'I am on the page of collection confirmation$'){ ->
+And(~'^I’m on the page of collection confirmation$'){ ->
+
 
     to ConfirmaColetaViewPage
     at ConfirmaColetaViewPage
@@ -78,12 +73,5 @@ And(~'^I see a success message$') {
     at ConfirmaColetaViewPage
     
     assert page.hasOk()
-    
-<<<<<<< HEAD
-}
-=======
-
 }
 
-
->>>>>>> 8eed4c3c65d8afa6ab588d7f88ddd26fef8f4132

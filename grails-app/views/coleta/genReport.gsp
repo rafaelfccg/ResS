@@ -5,7 +5,9 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'coleta.label', default: 'Coleta')}" />
-		<title>Coleta List</title>
+		<r:require module="export"/>
+		<title>Relatorio de coletas</title>
+
 	</head>
 	<body>
 		<a href="#list-coleta" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -16,7 +18,7 @@
 			</ul>
 		</div>
 		<div id="list-coleta" class="content scaffold-list" role="main">
-			<h1><g:message code="default.list.label" args="[entityName]" /></h1>
+			<h1>Relatorio de coletas</h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
@@ -33,7 +35,7 @@
 				</g:form>
 
 				
-				</fieldset>
+			</fieldset>
 			<table>
 				<thead>
 					<tr>
@@ -47,7 +49,7 @@
 					</tr>
 				</thead>
 				<tbody>
-				<g:each in="${coletaInstanceList}" status="i" var="coletaInstance">
+				<g:each in="${coletaList}" status="i" var="coletaInstance">
 					<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
 					
 						<td><g:link action="show" id="${coletaInstance.id}">${fieldValue(bean: coletaInstance, field: "nome")}</g:link></td>
@@ -61,7 +63,8 @@
 				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate total="${coletaInstanceTotal}" />
+				<!--g:paginate total="${coletaInstanceTotal}" /-->
+				<export:formats formats="['csv']" />
 			</div>
 		</div>
 	</body>
