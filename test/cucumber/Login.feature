@@ -23,7 +23,6 @@ Feature: Proper account authentication
   Scenario: Logging-in through the access page with correct credentials
 	Given that I have an account registered in the system
 	When I enter "testecnpj" in the CNPJ field
-
   And I enter "12345678" password in the password field
   And I submit the form via the Login button
 	Then I get redirected to my dashboard page

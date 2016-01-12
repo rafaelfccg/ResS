@@ -47,7 +47,7 @@ public class AdminUserTestDataAndOperations {
         def controller = new AdminUserController()
         def newAdminUser = [adminName: "Name",
                             adminCpf: "Cpf",
-                            adminLogin: "login",
+                            adminLogin: "admin",
                             adminPassword: "Password",
                             adminEmail: email,
                             adminPhone: "phone"]
@@ -75,7 +75,7 @@ public class AdminUserTestDataAndOperations {
         if(email != null && oldUser != null) {
             def cont = new AdminUserController()
             cont.params << newAdminUser
-            cont.edit(adminUser)
+            cont.edit()
             cont.response.reset()
         }
     }

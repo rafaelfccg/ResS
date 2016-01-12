@@ -33,6 +33,7 @@ Then (~'^the system resends the email with the data of the pending requests to t
 And(~'^generates a notification of email sending confirmation$') {->
 
 //not implemented yet
+
 }
 
 
@@ -58,7 +59,7 @@ When(~'I select the resend email notification option$') { ->
 }
 
 Then(~'^I see a confirmation message$') { ->
-	to SolicitacaoColetaViewPage
+    to SolicitacaoColetaViewPage
     at SolicitacaoColetaViewPage
     assert !page.hasOk()
 }

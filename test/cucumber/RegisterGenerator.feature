@@ -13,7 +13,7 @@ Feature: register a residue generator
     When I register the residue generator account "Los Pollos" with password "Abcd1234@“ and address "Rua Japecanga, 182"
     Then The account "Los Pollos" with password "Abcd1234@" is created
 
-
+@ignore
   Scenario: duplicated residue generator username
     Given That there is no restaurant with address "Rua Japecanga, 182"
     And there is a registered username "Los Pollos" in the database

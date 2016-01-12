@@ -14,22 +14,41 @@ class CreateColetaTestDataAndOperations {
     static coletaName = [
 
             [
-                    nome: "",
-                    data: ("03/10/2015"),
-                    volume: 30
+                    nome : "",
+                    data : ("03/10/2015"),
+                    volume: 30,
+                    senha: "123456"
             ]
     ]
 
     static coletaVolume = [
             [
-                    nome: "Cuscuz",
-                    data: ("03/10/2015"),
-                    volume: 0
+                    nome : "Cuscuz",
+                    data : ("03/10/2015"),
+                    volume: 0,
+                    senha: "123456"
             ]
 
     ]
 
-     static coletaDate = [
+    static coletaVolumePassword = [
+            [
+                    nome : "Lanche feliz",
+                    data : ("03/10/2015"),
+                    volume: 20,
+                    senha: "123456"
+            ],
+
+            [
+                    nome : "Lanche feliz",
+                    data : ("03/10/2015"),
+                    volume: -20,
+                    senha: "123456"
+            ]
+
+    ]
+
+    static coletaDate = [
             [
                     nome: "Cuscuz",
                     data: ("03/11/2015"),
@@ -68,14 +87,13 @@ class CreateColetaTestDataAndOperations {
 
     ]
 
-    static public def findColetaByName (String name) {
+    static public def findColetaByName(String name) {
         coletaName.find { coleta ->
-
             coleta.nome == name
         }
     }
 
-    static public def findColetaByVolume (String volume) {
+    static public def findColetaByVolume(String volume) {
         int volumeNumber = volume.toInteger();
         coletaVolume.find { coleta ->
             coleta.data == volumeNumber
@@ -83,18 +101,28 @@ class CreateColetaTestDataAndOperations {
         }
     }
 
-    static public def findColetaByDate (String date) {
-        //int dateForReal = date.toInteger();
-        
-        coletaReport.find { coleta ->
-           
-           coleta.data.contains(date)
+
+    static public def findColetaByVolumeAndPassword(String volume, String password) {
+        int volumeNumber = volume.toInteger();
+        coletaVolumePassword.find { coleta ->
+            coleta.volume == volumeNumber
+            coleta.senha == password
 
         }
-        
+
     }
 
-    static public void createColetaWithDate (String date) {
+    static public def findColetaByDate(String date) {
+        //int dateForReal = date.toInteger();
+        coletaReport.find { coleta ->
+
+            coleta.data.contains(date)
+
+        }
+
+    }
+
+    static public void createColetaWithDate(String date) {
         def cont = new ColetaController()
         def novaColeta = findColetaByDate(date)
         cont.params << novaColeta
@@ -103,7 +131,7 @@ class CreateColetaTestDataAndOperations {
         cont.response.reset()
     }
 
-    static public void createColetaWithName (String name) {
+    static public void createColetaWithName(String name) {
         def cont = new ColetaController()
         def novaColeta = findColetaByName(name)
         cont.params << novaColeta
@@ -113,7 +141,7 @@ class CreateColetaTestDataAndOperations {
     }
 
 
-    static public void createColetaWithVolume (String volume) {
+    static public void createColetaWithVolume(String volume) {
         def cont = new ColetaController()
         def novaColeta = findColetaByVolume(volume)
         cont.params << novaColeta
@@ -122,12 +150,20 @@ class CreateColetaTestDataAndOperations {
         cont.response.reset()
     }
 
+    static public void createColetaWithVolumeAndPassword(String volume, String password) {
+        def cont = new ColetaController()
+        def novaColeta = findColetaByVolumeAndPassword(volume, password)
+        cont.params << novaColeta
+        cont.create()
+        cont.save()
+        cont.response.reset()
+    }
+
     static public String calcVolume(String date) {
         def coletas = findColetaByDate(date)
-
         if (coletas) {
-            int count = coletas.grep{it.key =~ 'volume'}.value.sum()
-            return count+""
+            int count = coletas.grep { it.key =~ 'volume' }.value.sum()
+            return count + ""
         } else {
             throw new NoColetasException("Sem coletas compativeis", coletas)
         }

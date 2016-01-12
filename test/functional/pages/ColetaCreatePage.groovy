@@ -17,17 +17,31 @@ class ColetaCreatePage extends Page {
         $("form").nome = name
     }
     
-    def fillDataAndVolume () {
+    def fillDataAndVolumeAndPassword () {
         $("form").data_day = "6"
         $("form").data_month = "8"
         $("form").data_year = "2010"
         $("form").volume = 800
+        $("form").senha = "123456"
     }
     
     def fillVolume (String volume) {
         $("form").volume = volume
     }
     
+    def fillNameAndDataAndPassword () {
+        $("form").nome = "RU"
+        $("form").data_day = "6"
+        $("form").data_month = "8"
+        $("form").data_year = "2010"
+        $("form").senha = "123456"
+    }
+
+    def fillVolumeAndPassword (String volume, String password) {
+        $("form").volume = 800
+        $("form").senha = "123456"
+    }
+
     def fillNameAndData () {
         $("form").nome = "RU"
         $("form").data_day = "6"
