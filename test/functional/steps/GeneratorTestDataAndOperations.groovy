@@ -60,7 +60,6 @@ class GeneratorTestDataAndOperations{
              addressGenerator: "endereco2",
              averageMonthlyMeals: 0,
              averageDailyMeals: 0]
-
     ]
 
     static public def getGenerator(){
@@ -257,7 +256,7 @@ class GeneratorTestDataAndOperations{
         def cont = new ResidueGeneratorController()
         def novoGenerator = getGeneratorByAddress("Bubble Street number 7")
         cont.params << novoGenerator
-        cont.params << [addressGenerator: address] << [averageDailyMeals: dailymeal] <<[username: address] //guarantee that the username is not repeated
+        cont.params << [addressGenerator: address] << [averageDailyMeals: dailymeal] <<[username: address]
         cont.create()
         cont.save()
         cont.response.reset()

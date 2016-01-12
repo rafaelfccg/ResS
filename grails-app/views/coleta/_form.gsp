@@ -5,7 +5,7 @@
 <div class="fieldcontain ${hasErrors(bean: coletaInstance, field: 'nome', 'error')} ">
 	<label for="nome">
 		<g:message code="coleta.nome.label" default="Nome" />
-		
+		<span class="required-indicator">*</span>
 	</label>
 	<g:textField name="nome" value="${coletaInstance?.nome}"/>
 </div>
@@ -24,5 +24,13 @@
 		<span class="required-indicator">*</span>
 	</label>
 	<g:field name="volume" type="number" value="${coletaInstance.volume}" required=""/>
+</div>
+
+<div class="fieldcontain ${hasErrors(bean: coletaInstance, field: 'senha', 'error')} ">
+	<label for="senha">
+		<g:message code="coleta.nome.label" default="Senha (autenticação)" />
+		<span class="required-indicator">*</span>
+	</label>
+	<g:textField name="senha" value="${coletaInstance?.senha}"/>
 </div>
 

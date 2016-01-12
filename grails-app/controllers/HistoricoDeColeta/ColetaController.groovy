@@ -1,6 +1,7 @@
 package HistoricoDeColeta
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.orm.HibernateCriteriaBuilder
 
 class ColetaController {
 
@@ -102,5 +103,32 @@ class ColetaController {
             flash.message = message(code: 'default.not.deleted.message', args: [message(code: 'coleta.label', default: 'Coleta'), id])
             redirect(action: "show", id: id)
         }
+    }
+
+
+    def genReport(){
+        
+        //params.max = Math.min(max ?: 10, 100)
+           
+/*
+        def c = Coleta.createCriteria()
+        def coletaList = c.list(max: 10, offset: 10) {
+               
+            //between('data', d1, d2)
+            eq("nome", "aa")
+
+                //if (params.date1 && params.date2) {
+                   // def inicio = params.date1.clearTime()
+                   // def fim = params.date2.clearTime()
+                    
+                // }
+                
+        }
+
+     */   
+        def coletaList = Coleta.returnSearch(params.date1,params.date2)
+       [coletaList: coletaList, coletaInstanceTotal: Coleta.count()]
+ 
+
     }
 }
