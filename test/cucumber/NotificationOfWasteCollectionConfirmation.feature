@@ -8,16 +8,16 @@
   @ignore
   Scenario: sending confirmation
     Given that the system has a waste collection confirmed
-    When I submit the email request
     And there is internet connection
+    When I submit the email request
     Then the system sends an email confirmation for the registered stakeholders
   @ignore
   Scenario: failure confirmation sending
     Given   that the system has a waste collection confirmed
-    When there isn’t internet connection
-    Then the system does not send an email confirmation
-    And generetes an error notification
-
+    And there isn’t internet connection
+    When the system tries to send an email confirmation
+    Then the system generetes an error notification 
+    And the system saves the emails to be sent when there is internet connection
 
 #GUI
   @ignore
