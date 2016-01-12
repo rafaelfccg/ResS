@@ -5,7 +5,9 @@
 	<head>
 		<meta name="layout" content="main">
 		<g:set var="entityName" value="${message(code: 'coleta.label', default: 'Coleta')}" />
+		<r:require module="export"/>
 		<title>Relatorio de coletas</title>
+
 	</head>
 	<body>
 		<a href="#list-coleta" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -21,18 +23,19 @@
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
 			<fieldset class="form">
-				<g:form action="genReport" method="GET">
-					<div class="fieldcontain">
-						<label for="date1">Período de referência:</label>
-						<g:datePicker name="date1" value="${params.date1}"
-              				precision="day" years="${2000..2030}"/> Até
-              			<g:datePicker name="date2" value="${params.date2}"
-              				precision="day" years="${2000..2030}"/>	
-						
-						<input name ="Ok "type="submit" value="Ok">
-						</div>
-					</g:form>
-				</fieldset>
+				<g:form action="genReport">
+				    <div class="fieldcontain">
+				        Data para relatório
+				        <g:datePicker name="q" value="${params.q}"
+              				precision="day" years="${2000..2030}"/>
+              			<g:datePicker name="q2" value="${params.q2}"
+              				precision="day" years="${2000..2030}"/>		
+				        <input type="submit" name="ok" value="Gerar Relatório" />
+				    </div>
+				</g:form>
+
+				
+			</fieldset>
 			<table>
 				<thead>
 					<tr>
@@ -60,7 +63,8 @@
 				</tbody>
 			</table>
 			<div class="pagination">
-				<g:paginate total="${coletaInstanceTotal}" />
+				<!--g:paginate total="${coletaInstanceTotal}" /-->
+				<export:formats formats="['csv']" />
 			</div>
 		</div>
 	</body>

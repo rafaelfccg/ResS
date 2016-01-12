@@ -13,7 +13,6 @@
 			<ul>
 				<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
 				<li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-				<li><a class="home" href="${createLink(uri: '/coleta/genReport')}"><g:message code="Gerar Relatorio"/></a></li>
 			</ul>
 		</div>
 		<div id="list-coleta" class="content scaffold-list" role="main">
@@ -21,6 +20,20 @@
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
+			<fieldset class="form">
+				<g:form action="genReport">
+				    <div class="fieldcontain">
+				        Data para relatório
+				        <g:datePicker name="q" value="${params.q}"
+              				precision="day" years="${2000..2030}"/>
+              			<g:datePicker name="q2" value="${params.q2}"
+              				precision="day" years="${2000..2030}"/>		
+				        <input type="submit" name="ok" value="Gerar Relatório" />
+				    </div>
+				</g:form>
+
+				
+				</fieldset>
 			<table>
 				<thead>
 					<tr>
