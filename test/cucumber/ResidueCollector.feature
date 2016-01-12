@@ -22,6 +22,22 @@ Feature: Register a residue Collector
 	Then the new collecor with email "prefeitura_do_recife@recife.com.br"
 	And CNPJ "12300012300011" is not created
 
+
+  Scenario: Edit existing collector
+	Given that there is a collector with email "prefeitura_do_recife@recife.com.br"
+	And I am at the editing page of this collector
+	When I change the field name to "Prefeitura"
+	And I click on "Save" button
+	Then the collector's name is changed successfully
+
+  Scenario: Delete existing collector
+	Given that there is a collector with email "prefeitura_do_recife@recife.com.br"
+	And I am at the editing page of this collector
+	When I click on the "delete" button
+	And confirm the deletion
+	Then the collector is deleted from the database
+	And there it does not exist on the database anymore
+
 #GUI
   @ignore
   Scenario: Register new Collector
@@ -41,3 +57,15 @@ Feature: Register a residue Collector
 	When I press the button "Register new Collector"
 	Then the system show me a error message "It is not possible to add this new Collector. This email or CNPJ is already being used!"
 
+  Scenario: Edit an existing collector
+	Given that there is a collector with email "prefeitura_do_recife@recife.com.br"
+	And I am at the editing page of this collector
+	When I change the field name to "Prefeitura"
+	And I click on "Save" button
+	Then I see a message "The collector's change was saved successfully!"
+
+  Scenario: Delete existing collector
+	Given that there is a collector with email "prefeitura_do_recife@recife.com.br"
+	And I am at the editing page of this collector
+	When I click on the "delete" button
+	Then A confirmation dialog shows up asking "Are you sure you want to delete this collector?"

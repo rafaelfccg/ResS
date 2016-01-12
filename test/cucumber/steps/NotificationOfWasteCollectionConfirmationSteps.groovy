@@ -9,10 +9,14 @@ import static cucumber.api.groovy.EN.*
 //CONTROLLER
 
 //Scenario: Sending confirmation
+<<<<<<< HEAD
+Given(~'^that the system has a waste collection confirmed$'){ String name ->
+=======
 
 
 
 Given(~'^that the system has a waste collection confirmed$'){->
+>>>>>>> 8eed4c3c65d8afa6ab588d7f88ddd26fef8f4132
     CreateHarvestSolicitationTestDataAndOperations.createGeneratorByName(name)
     residueGenerator = ResidueGenerator.findByNameGenerator(name)
 
@@ -35,7 +39,7 @@ And(~'^There is internet connection$') { ->
 
 Then(~'^the system sends an email confirmation for the registered stakeholders$') {
 
-//send email isn't implemented
+page.sendEmailConfirmation(restaurante)
 
 }
 
@@ -75,7 +79,11 @@ And(~'^I see a success message$') {
     
     assert page.hasOk()
     
+<<<<<<< HEAD
+}
+=======
 
 }
 
 
+>>>>>>> 8eed4c3c65d8afa6ab588d7f88ddd26fef8f4132

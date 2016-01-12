@@ -81,7 +81,6 @@ Then(~'^I am at the Report Waste Production page'){->
 //Then I am at the Report Waste Production page
 //And the report is empty
 
-
 And(~'^the report is empty'){->
     assert page.hasEmptyMessage()
 }
