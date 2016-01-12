@@ -28,6 +28,7 @@ Feature: Residue Generator Production Report
     Then I am at the Report Waste Production page
     And the report is empty
 
+
   @ignore
   Scenario: export Residue Production report as CSV
     Given I have a residue production report
@@ -50,3 +51,27 @@ Feature: Residue Generator Production Report
     When I select the option to export the report into a csv with name "relatorio.csv" and path "~\AAss"
     And the path "~\AAss" does not exists
     Then I see an error about the exporting file
+
+  Scenario: generate historical month based residue production report
+    Given the system has a residue generator at "endereco" registered
+    When the system receives a request to generate an annual residue generator production report for a period of "3" years for that month
+    Then a report with average data and comparison for that month and years is generated
+
+  Scenario: generate empty historical month based residue production report
+    Given the system has no registered residue Generator
+    When the system receives a request to generate an annual residue generator production report for a period of "3" years for that month
+    Then the report has no data available
+
+  Scenario: generate historical month based residue production report web
+     Given I am at the Create Residue Generator Report page
+     When I select the button to generate the report
+     And I fill the type and period fields correctly
+     Then I am at the Report Waste Production page
+
+  Scenario: generate empty historical month based residue production report web
+     Given I am at the Create Residue Generator Report page
+     And the system has no registered residue Generator
+     When I select the button to generate the report
+     And I fill the type and period fields correctly
+     Then I am at the Report Waste Production page
+     And the report has no data available

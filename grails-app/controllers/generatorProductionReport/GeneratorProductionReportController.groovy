@@ -27,6 +27,17 @@ class GeneratorProductionReportController {
         //redirect(action: "show", id: generatorProductionReportInstance.id)
     }
 
+    def createYearlyReport(int years) {
+
+        def report = new GeneratorProductionReport()
+        report.monthsBack = years
+        report.type = "ano"
+
+        report.computeData()
+
+        return report
+
+    }
     def save(long id){
         print(params)
         GeneratorProductionReportController.gen = new GeneratorProductionReport(params)
@@ -34,6 +45,7 @@ class GeneratorProductionReportController {
         Date data = new Date()
         Date last = data
         last.setMonth(last.getMonth() -5)
+
         GeneratorProductionReportController.gen.harvestSolicitations =  HarvestSolicitation.findAllByConfirmationDateGreaterThan(last)
         GeneratorProductionReportController.gen.computeData()
 

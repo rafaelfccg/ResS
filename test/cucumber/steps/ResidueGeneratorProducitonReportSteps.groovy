@@ -71,6 +71,7 @@ When(~'^I click ask the system to produce a report based on the last "([^"]*)" m
     page.clickNewMonthlyReport()
 }
 Then(~'^I am at the Report Waste Production page'){->
+    to ResidueProductionReportPage
     at ResidueProductionReportPage
 }
 
@@ -85,11 +86,18 @@ And(~'^the report is empty'){->
     assert page.hasEmptyMessage()
 }
 
+When (~'^the system receives a request to generate an annual residue generator production report for a period of "([^"]*)" years for that month$') { int yearsAgo ->
+
+    GeneratorProductionReportController otherController = new GeneratorProductionReportController()
+    historicReport = otherController.createYearlyReport(yearsAgo)
+}
+
 //@ignore
 // Scenario: export Residue Production report as CSV
 //Given I have a residue production report
 //When I ask the system to export the report into a csv with name "relatorio.csv" and path "~\Downloads"
 //Then The system saves a file to my computer
+
 
 Given(~'I have a residue production report'){->
     ProductionReportTestDataAndOperations.setReport(5)
@@ -107,11 +115,34 @@ Then(~'The system saves a file to my computer'){->
 
 
 //@ignore
-//        Scenario: fail to export Residue Production report as CSV
+// Scenario: fail to export Residue Production report as CSV
 //Given I have a residue production report
 //When I ask the system to export the report into a csv with name "relatorio.csv" and path "~\AAss"
 //And the path "~\AAss" does not exists
 //Then The system doesnt save the file to my computer
+
+Then (~'^a report with average data and comparison for that month and years is generated$') { ->
+
+    assert historicReport != null
+
+    if(historicReport.names != null && historicReport.harvestSolicitations != null) {
+
+        assert historicReport.avgProduction != 0 && historicReport.stdProduction != 0
+
+    }
+
+}
+
+And(~'^the report has no data available') { ->
+
+    assert historicReport.harvestSolicitations == null && historicReport.numberOfGenerators == 0
+
+}
+
+When(~'I select the button to generate the report$') { ->
+
+    page.clickSubmit()
+}
 
 And(~'the path "([^"]*)" does not exists'){String path ->
     File f = new File(path)
@@ -121,12 +152,7 @@ Then(~'The system doesnt save the file to my computer'){->
     File f = new File(checkPath)
     assert !f.exists()
 }
-//@ignore
-//Scenario: export Residue Production report as CSV web
-//Given I am at the residue production report page
-//When I select the option to export the report into a csv with name "relatorio.csv" and path "~\Downloads"
-//Then I see a confirmation that the file was saved
-//@ignore
+
 
 Given(~'I am at the residue production report page'){->
     to CreateResidueProductionReportPage
@@ -141,8 +167,23 @@ When(~'I select the option to export the report into a csv with name "([^"]*)" a
 Then(~'I see a confirmation that the file was saved'){->
 
 }
+
+
+And(~'I fill the type and period fields correctly$') { ->
+
+    page.fillFields("ano", 3)
+
+}
+
+//@ignore
+//Scenario: export Residue Production report as CSV web
+//Given I am at the residue production report page
+//When I select the option to export the report into a csv with name "relatorio.csv" and path "~\Downloads"
+//Then I see a confirmation that the file was saved
+//@ignore
 // Scenario: fail to export Residue Production report as CSV web
 //Given I am at the residue production report page
 //When I select the option to export the report into a csv with name "relatorio.csv" and path "~\AAss"
 //And the path "~\AAss" does not exists
 //Then I see an error about the exporting file
+

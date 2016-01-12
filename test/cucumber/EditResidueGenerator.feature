@@ -20,7 +20,7 @@ Feature: Edit the residue generator registration data
     And   submit my changes
     Then  I should see a message indicating that the changes are properly stored
   #end
-
+@ignore
   Scenario: Some of the required registration data fields are blank
     Given the system has a residue generator with the address "Bubble Street number 4"
     When  I do not fill the address field

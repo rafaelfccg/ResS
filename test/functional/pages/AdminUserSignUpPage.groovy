@@ -21,12 +21,4 @@ class AdminUserSignUpPage extends Page {
     def submitUserInfo(){
         $("input", name: "submit").click()
     }
-
-    def boolean hasErrors(){
-        if($(".errors") == null){
-            return false
-        }else{
-            return true
-        }
-    }
 }

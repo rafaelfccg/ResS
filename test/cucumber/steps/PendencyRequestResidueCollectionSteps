@@ -1,0 +1,86 @@
+package steps
+
+import HistoricoDeColeta.Coleta
+
+
+import static cucumber.api.groovy.EN.*
+
+//Create by Ricardo Barioni
+
+//CONTROLLER
+//CENARIO CONTROLADOR:
+//Scenario: Pendency at a residue collection request
+
+Given (~'^I am logged into the system as a restaurant$'){ ->
+    //login not implemented yet
+}
+
+When (~'^I try to change the pendency of a residue collection request with Name "([^"]*)"$'){String name ->
+    
+}
+
+And (~'^The residue collection request with Name "([^"]*)" is pendent$'){String name ->
+    
+}
+
+Then (~'^The residue collection request with Name "([^"]*)" will not be pendent anymore$'){String name ->
+    
+}
+
+//CENARIO CONTROLADOR:
+//Scenario: Fail to change pendency at a residue collection request
+
+Given (~'^I am logged onto the system as a restaurant$'){ ->
+    //login not implemented yet
+}
+
+When (~'^I try to change pendency of a residue collection request with Name "([^"]*)"$'){String name ->
+    
+}
+
+And (~'^The residue collection request with the Name "([^"]*)" is not pendent$'){String name ->
+    
+}
+
+Then (~'^The residue collection request with Name "([^"]*)" will still be not pendent$'){String name ->
+    
+}
+
+//GUI
+//CENARIO GUI:
+//Scenario: Pendency at a residue collection request
+
+Given (~'^I am at listing collection page$'){ ->
+
+}
+
+When (~'^The pendency of a residue collection request with Name "([^"]*)" is written "([^"]*)"$'){String name, String pendency ->
+
+}
+
+And (~'^I click on the pendency button$'){ ->
+
+}
+
+Then (~'^I should not see an error message$'){ ->
+
+}
+
+//CENARIO GUI:
+//Scenario: Fail to change pendency at a residue collection request
+
+Given (~'^I am at listing the collection page$'){ ->
+
+}
+
+When (~'^The pendency of an residue collection request with Name "([^"]*)" is written "([^"]*)"$'){String name, String pendency ->
+
+}
+
+And (~'^I click at the pendency button$'){ ->
+
+}
+
+Then (~'^I shall see an error message$'){ ->
+
+}
